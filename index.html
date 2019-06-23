@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title>Final Project</title>
+	<meta name="Description" content="Final project of Interactive graphics course at Sapienza University in Rome. Authors: Luca Maggio, Matteo Rizza, Nicola Di Santo">
+	<meta name="robots" content="index,follow">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<script src="lib/three.min.js"></script>
+	<script src="lib/GLTFLoader.js"></script>
+	<script src='lib/dat.gui.min.js'></script>
+	<script src="lib/OrbitControls.js"></script>
+	<script src='lib/Tween.js'></script>
+	<script src='js/listeners.js'></script>
+	<script src='js/drawAccessories.js'></script>
+
+
+
+
+
+	<!-- Bootstrap stuff -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="index.html" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+			<a class="nav-item nav-link" id="nav-tut-tab" data-toggle="tab" href="todo.html" role="tab" aria-controls="nav-profile" aria-selected="false">Tutorial</a>
+			<a class="nav-item nav-link" id="nav-cred-tab" data-toggle="tab" href="todo.html" role="tab" aria-controls="nav-contact" aria-selected="false">Credits</a>
+			<div id="tutorial" align="center" style="position:absolute; left:4.5%; top:6%; width:25%; height: 13%; border: 2px solid grey; display: none;">
+			<font size=4><br>Move: Click on the position you want to reach<br>Goal: Avoid collisions!</font></div>
+			<div id="credits" align="center" style="position:absolute; left:4.5%; top:6%; width:25%; height: 14%; border: 2px solid grey; display: none;">
+			<font size=4>Project realized by:<br>Luca Maggio<br>Matteo Rizza<br>Nicola Di Santo</font></div>
+			<script type="text/javascript">
+			document.getElementById("nav-home-tab").onclick = function () {
+				location.href = "index.html";
+			};
+			document.getElementById("nav-tut-tab").onclick = function () {
+				var x = document.getElementById("tutorial");
+				var y = document.getElementById("credits");
+  			if (x.style.display === "none") {
+    		x.style.display = "block";
+				y.style.display = "none";
+  			} else {
+    		x.style.display = "none";
+  			}
+			};
+			document.getElementById("nav-cred-tab").onclick = function () {
+				var x = document.getElementById("tutorial");
+				var y = document.getElementById("credits");
+				if (y.style.display === "none") {
+					y.style.display = "block";
+					x.style.display = "none";
+				} else {
+				y.style.display = "none";
+				}
+			};
+			</script>
+		</div>
+	</nav>
+	<div class="row w-100"><p></p></div><br><br><br>
+	<div class="row w-100" style="margin-left: 0.5vw;">
+		<div class="col-5" style="margin: auto;">
+			<h1 class="display-4 font-size-md-down-5 mb-3">Tamagotchi Tribute</h1>
+			<p class="text-left">
+				Final project of Interactive Graphics course at Sapienza univeristy. You can control a new, very singolar, puppy.
+			</p>
+			<div class="d-flex align-items-center flex-wrap">
+				<button type="button" class="btn btn-outline-info btn-lg btn-block" id="customize">Customize Character</button>
+				<button type="button" class="btn btn-outline-primary btn-lg btn-block" id="new">New Game</button>
+
+			</div>
+		</div>
+		<div class="col-6" id="model-preview">
+			<br><br>
+			<!-- append three.js canvas here-->
+		</div>
+	</div>
+	<div class="row " id="customize-options" style="margin-left: 5.5vw;" hidden>
+		<div class="col-5">
+			<div class="d-flex align-items-center flex-wrap">
+				<button type="button" class="btn btn-outline-warning btn-lg btn-block" id="glasses">Add Glasses</button>
+				<button type="button" class="btn btn-outline-warning btn-lg btn-block" id="hat">Add Hat</button>
+			</div>
+		</div>
+	</div>
+	<script src='js/preview-model.js'></script>
+</body>
+</html>
