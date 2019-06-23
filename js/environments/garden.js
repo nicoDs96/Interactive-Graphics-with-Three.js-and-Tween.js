@@ -1,8 +1,8 @@
 
 function garden(){
 
-var checkLoaded = [];
-var loaded;
+document.getElementById("loading").setAttribute("hidden","true");
+
 
   //Scene
   var scene = new THREE.Scene();
@@ -19,11 +19,11 @@ var loaded;
   renderer.setSize(window.innerWidth, window.innerHeight);
   if(document.querySelector('canvas') != undefined ){
       document.body.replaceChild( renderer.domElement, document.getElementsByTagName('canvas')[0] );
-      document.querySelector('canvas').setAttribute('hidden','true');
+
   }
   else{
       document.body.appendChild( renderer.domElement );
-      document.querySelector('canvas').setAttribute('hidden','true');
+
   }
 
   //Light
@@ -81,14 +81,6 @@ var loaded;
   },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: fountain' );
-  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
-      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          checkLoaded[0] = true;
-      }
-  }else{
-      alert('the loading utility is currently down, please wait the models load before starting to play.');
-      checkLoaded[0] = true;
-  }
 	},
 	function ( error ) {
   console.log( 'An error happened' );
@@ -116,14 +108,6 @@ var loaded;
   },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: gazebo' );
-  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
-      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          checkLoaded[1] = true;
-      }
-  }else{
-      alert('the loading utility is currently down, please wait the models load before starting to play.');
-      checkLoaded[1] = true;
-  }
   },
   function ( error ) {
   console.log( 'An error happened' );
@@ -153,14 +137,6 @@ var loaded;
     },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: chair' );
-  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
-      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          checkLoaded[2] = true;
-      }
-  }else{
-      alert('the loading utility is currently down, please wait the models load before starting to play.');
-      checkLoaded[2] = true;
-  }
 	},
 	function ( error ) {
   console.log( 'An error happened' );
@@ -181,14 +157,6 @@ var loaded;
     },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: tree' );
-  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
-      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          checkLoaded[3] = true;
-      }
-  }else{
-      alert('the loading utility is currently down, please wait the models load before starting to play.');
-      checkLoaded[3] = true;
-  }
   },
   function ( error ) {
   console.log( 'An error happened' );
@@ -292,6 +260,7 @@ var loaded;
    });
 
   //Raycaster - Robot movement
+  var alerted = false;
   var raycaster = new THREE.Raycaster();
   var mouse = new THREE.Vector2();
   var collidableMeshList = [];
@@ -344,7 +313,11 @@ var loaded;
                     var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
                     var collisionResults = ray.intersectObjects( collidableMeshList );
                     if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){
-                      //alert("game over");
+                      window.location.replace("index.html");
+                      if(!alerted){
+                      alert("Game Over\nThe Robot Collided");
+                      alerted = true;
+                    }
                     }
                   }
               });
@@ -429,24 +402,9 @@ var loaded;
   window.addEventListener( 'click', onMouseClick, false );
 
 
-  //Debug
-  var controls = new THREE.OrbitControls( camera, renderer.domElement );
-  controls.enableZoom = true;
-  controls.update();
-  var gui = new dat.gui.GUI();
-  var f1 = gui.addFolder('Camera Position');
-  f1.add(camera.position, 'x').min(-40).max(40).step(0.1);
-  f1.add(camera.position, 'y').min(-40).max(40).step(0.1);
-  f1.add(camera.position, 'z').min(-40).max(40).step(0.1);
-  var axesHelper = new THREE.AxesHelper( 30 );
-  scene.add( axesHelper );
-
   //Animation
   function animate() {
       renderer.render( scene, camera );
-      if(checkLoaded[0]==true && checkLoaded[1]==true && checkLoaded[2]==true && checkLoaded[3]==true){
-        loaded=true;
-      }
       TWEEN.update();
       requestAnimationFrame( animate );
   }
