@@ -497,10 +497,11 @@ function bedroom(){
 
                 if(collided){
                     tween.stop();
-                    setInterval(function(){
+                    var func = setInterval(function(){
                         console.log('gameOver')
                        alert("Game Over\nThe Robot Collided");
                        window.location.replace("index.html");
+                       clearInterval(func);
 
                    }, 500);
                 }else{
