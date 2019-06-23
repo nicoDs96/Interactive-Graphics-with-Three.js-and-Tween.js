@@ -1,6 +1,8 @@
 
 function garden(){
 
+var checkLoaded = [];
+var loaded;
 
   //Scene
   var scene = new THREE.Scene();
@@ -17,9 +19,11 @@ function garden(){
   renderer.setSize(window.innerWidth, window.innerHeight);
   if(document.querySelector('canvas') != undefined ){
       document.body.replaceChild( renderer.domElement, document.getElementsByTagName('canvas')[0] );
+      document.querySelector('canvas').setAttribute('hidden','true');
   }
   else{
       document.body.appendChild( renderer.domElement );
+      document.querySelector('canvas').setAttribute('hidden','true');
   }
 
   //Light
@@ -77,6 +81,14 @@ function garden(){
   },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: fountain' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          checkLoaded[0] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      checkLoaded[0] = true;
+  }
 	},
 	function ( error ) {
   console.log( 'An error happened' );
@@ -104,6 +116,14 @@ function garden(){
   },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: gazebo' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          checkLoaded[1] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      checkLoaded[1] = true;
+  }
   },
   function ( error ) {
   console.log( 'An error happened' );
@@ -133,6 +153,14 @@ function garden(){
     },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: chair' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          checkLoaded[2] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      checkLoaded[2] = true;
+  }
 	},
 	function ( error ) {
   console.log( 'An error happened' );
@@ -153,6 +181,14 @@ function garden(){
     },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: tree' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          checkLoaded[3] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      checkLoaded[3] = true;
+  }
   },
   function ( error ) {
   console.log( 'An error happened' );
@@ -408,6 +444,9 @@ function garden(){
   //Animation
   function animate() {
       renderer.render( scene, camera );
+      if(checkLoaded[0]==true && checkLoaded[1]==true && checkLoaded[2]==true && checkLoaded[3]==true){
+        loaded=true;
+      }
       TWEEN.update();
       requestAnimationFrame( animate );
   }
