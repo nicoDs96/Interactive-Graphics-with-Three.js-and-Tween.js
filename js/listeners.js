@@ -1,5 +1,6 @@
 function setUpListeners( ){
-    document.getElementById("bedroom").onclick = function(){
+    document.getElementById("bedroom").onclick = function(e){
+        e.stopPropagation();
         room = 'bedroom';
         var canv = document.querySelector('canvas');
         if(canv != null){
@@ -8,7 +9,8 @@ function setUpListeners( ){
 
         bedroom();
     };
-    document.getElementById("kitchen").onclick = function(){
+    document.getElementById("kitchen").onclick = function(e){
+        e.stopPropagation();
         room = 'kitchen';
         var canv = document.querySelector('canvas');
         if(canv != null){
@@ -16,7 +18,8 @@ function setUpListeners( ){
         }
         kitchen();
     };
-    document.getElementById("garden").onclick = function(){
+    document.getElementById("garden").onclick = function(e){
+        e.stopPropagation();
         room = 'garden';
         var canv = document.querySelector('canvas');
         if(canv != null){
