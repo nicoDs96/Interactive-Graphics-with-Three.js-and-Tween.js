@@ -15,6 +15,11 @@ var progressBarHungry,
     progressBarSleep,
     progressBarFunny;
 
+const pathSB = 'img/statusbar/';
+const sb1 = 'hungry';
+const sb2 = 'sleep';
+const sb3 = 'funny';
+
 function statusBar() {
     cameraOrtho = initOrthographicCamera();
     cameraOrtho.position.z = 10;
