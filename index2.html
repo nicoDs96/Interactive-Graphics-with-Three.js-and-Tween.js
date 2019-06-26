@@ -49,7 +49,10 @@
 
 		<!-- testing js -->
 		<script>
-		var camera;
+		var scene = new THREE.Scene();
+	  var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 1000 );
+	  var renderer = new THREE.WebGLRenderer({ antialias: true });
+		
 		var loaded = false;
 		setUpListeners();
 		var room = 'bedroom';
