@@ -496,7 +496,7 @@ function bedroom(){
                     tween.stop();
                     var func = setInterval(function(){
                         console.log('gameOver')
-                       alert("Game Over\nThe Robot Collided");
+                       alert("Game Over\nThe Robot Collided in bedroom");
                        window.location.replace("index.html");
                        clearInterval(func);
 

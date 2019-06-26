@@ -315,7 +315,7 @@ document.getElementById("loading").setAttribute("hidden","true");
                     if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){
                       window.location.replace("index.html");
                       if(!alerted){
-                      alert("Game Over\nThe Robot Collided");
+                      alert("Game Over\nThe Robot Collided in garden");
                       alerted = true;
                     }
                     }
