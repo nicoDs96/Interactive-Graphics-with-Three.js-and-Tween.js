@@ -1,31 +1,14 @@
 function setUpListeners( ){
     document.getElementById("bedroom").onclick = function(e){
-        e.stopPropagation();
-        room = 'bedroom';
-        var canv = document.querySelector('canvas');
-        if(canv != null){
-            canv.setAttribute('hidden','true');
-        }
-
-        bedroom();
+        window.location.replace("bedroom.html");
     };
     document.getElementById("kitchen").onclick = function(e){
-        e.stopPropagation();
-        room = 'kitchen';
-        var canv = document.querySelector('canvas');
-        if(canv != null){
-            canv.setAttribute('hidden','true');
-        }
-        kitchen();
+        window.location.replace("kitchen.html");
+
     };
     document.getElementById("garden").onclick = function(e){
-        e.stopPropagation();
-        room = 'garden';
-        var canv = document.querySelector('canvas');
-        if(canv != null){
-            canv.setAttribute('hidden','true');
-        }
-        garden();
+        window.location.replace("garden.html");
+
     };
     window.addEventListener( 'resize', function () {
 
@@ -127,7 +110,7 @@ function setUpMenuListeners(){
         }
         console.log('customization parameters:');
         console.log(document.cookie);
-        window.location.replace("index2.html");
+        window.location.replace("bedroom.html");
 
     };
 }
