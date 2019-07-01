@@ -2,6 +2,9 @@
 function garden(){
 
 document.getElementById("loading").setAttribute("hidden","true");
+var loadedV = [];
+loaded = false;
+
 
 
   //Scene
@@ -81,6 +84,14 @@ document.getElementById("loading").setAttribute("hidden","true");
   },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: fountain' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          loadedV[0] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      loadedV[0] = true;
+  }
 	},
 	function ( error ) {
   console.log( 'An error happened' );
@@ -108,6 +119,13 @@ document.getElementById("loading").setAttribute("hidden","true");
   },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: gazebo' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          loadedV[1] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      loadedV[1] = true;
   },
   function ( error ) {
   console.log( 'An error happened' );
@@ -137,6 +155,13 @@ document.getElementById("loading").setAttribute("hidden","true");
     },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: chair' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          loadedV[2] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      loadedV[2] = true;
 	},
 	function ( error ) {
   console.log( 'An error happened' );
@@ -157,6 +182,13 @@ document.getElementById("loading").setAttribute("hidden","true");
     },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: tree' );
+  if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+      if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+          loadedV[3] = true;
+      }
+  }else{
+      alert('the loading utility is currently down, please wait the models load before starting to play.');
+      loadedV[3] = true;
   },
   function ( error ) {
   console.log( 'An error happened' );
@@ -253,6 +285,13 @@ document.getElementById("loading").setAttribute("hidden","true");
    }},
    function ( xhr ) {
    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: robot' );
+   if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
+       if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+           loadedV[4] = true;
+       }
+   }else{
+       alert('the loading utility is currently down, please wait the models load before starting to play.');
+       loadedV[4] = true;
    },
    function ( error ) {
       console.log( 'An error happened' );
@@ -407,6 +446,9 @@ document.getElementById("loading").setAttribute("hidden","true");
       renderer.render( scene, camera );
       TWEEN.update();
       requestAnimationFrame( animate );
+      if(loadedV[0] == true && loadedV[1] == true && loadedV[2] == true && loadedV[3] == true && loadedV[4] == true){
+        loaded = true;
+      }
   }
   animate();
 
