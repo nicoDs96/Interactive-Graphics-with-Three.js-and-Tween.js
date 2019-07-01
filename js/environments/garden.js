@@ -314,9 +314,6 @@ loaded = false;
           var intersects = raycaster.intersectObjects( scene.children );
           var point = intersects[intersects.length -1].point;
           if(modelChar != null){
-               // if( !isNaN( modelChar.position.angleTo(point) ) ) {
-               //     modelChar.rotation.y = modelChar.position.angleTo(point);
-               // }
               var mainB = robotSkeleton.bones;
               var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
               var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
