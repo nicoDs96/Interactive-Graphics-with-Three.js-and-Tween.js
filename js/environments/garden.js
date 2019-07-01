@@ -126,7 +126,7 @@ loaded = false;
   }else{
       alert('the loading utility is currently down, please wait the models load before starting to play.');
       loadedV[1] = true;
-  },
+  }},
   function ( error ) {
   console.log( 'An error happened' );
   });
@@ -162,7 +162,7 @@ loaded = false;
   }else{
       alert('the loading utility is currently down, please wait the models load before starting to play.');
       loadedV[2] = true;
-	},
+	}},
 	function ( error ) {
   console.log( 'An error happened' );
   });
@@ -189,7 +189,7 @@ loaded = false;
   }else{
       alert('the loading utility is currently down, please wait the models load before starting to play.');
       loadedV[3] = true;
-  },
+  }},
   function ( error ) {
   console.log( 'An error happened' );
   });
@@ -292,7 +292,7 @@ loaded = false;
    }else{
        alert('the loading utility is currently down, please wait the models load before starting to play.');
        loadedV[4] = true;
-   },
+   }},
    function ( error ) {
       console.log( 'An error happened' );
       console.log(error);
