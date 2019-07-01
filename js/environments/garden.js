@@ -446,7 +446,7 @@ loaded = false;
       renderer.render( scene, camera );
       TWEEN.update();
       requestAnimationFrame( animate );
-      if(loadedV[0] == true && loadedV[1] == true && loadedV[2] == true && loadedV[3] == true && loadedV[4] == true){
+      if((loadedV[0] == true) && (loadedV[1] == true) && (loadedV[2] == true) && (loadedV[3] == true) && (loadedV[4] == true)){
         loaded = true;
       }
   }
