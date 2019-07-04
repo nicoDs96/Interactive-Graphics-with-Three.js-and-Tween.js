@@ -11,6 +11,9 @@ function kitchen(){
     var rootBone = [];
     var robotSkeleton;
 
+    var firstClick = true;
+    var clicking = false;
+
 //collision boxes
     var invisibleBox;
     var collidableMeshList = [];
@@ -185,9 +188,9 @@ function kitchen(){
     directionalLight.position.set( 0, 1, 1 ).normalize();
     scene.add( directionalLight );
 
+
+
     hier= new THREE.Group(); //hierarchical model
-
-
 
     var loader = new THREE.GLTFLoader();
 
@@ -479,10 +482,43 @@ function kitchen(){
     */
 
 
+
     function onMouseClick( event ) {
+
+      document.getElementById("hello").onclick = function(e){
+        clicking=true;
+        console.log("animation hello executing");
+        helloanimation(robotSkeleton);
+      };
+
+      document.getElementById("dabdance").onclick = function(e){
+        clicking=true;
+        console.log("animation dabdance executing");
+        dabdanceanimation(robotSkeleton);
+      };
+
+      document.getElementById("affermative_movement").onclick = function(e){
+        clicking=true;
+        console.log("animation affermative movement executing");
+        affermativeanimation(robotSkeleton);
+      };
+
+      document.getElementById("negative_movement").onclick = function(e){
+        clicking=true;
+        console.log("animation negative movement executing");
+        negativeanimation(robotSkeleton);
+      };
+
+
+
+      console.log("debug click" + clicking);
+
+      if(clicking==false) {
 
         // calculate mouse position in normalized device coordinates
         // (-1 to +1) for both components
+
+      //AL PRIMO CLICK DI MOUSE SUL BOTTONE VA FUORI SCENA E COLLIDE IL PERSONAGGIO!!
 
         mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
@@ -494,13 +530,14 @@ function kitchen(){
         var intersects = raycaster.intersectObjects( scene.children );
 
         var point = intersects[intersects.length -1].point; //cube
-        //console.log('Point intersected');
-        //console.log(point);
+
         if(modelChar!= null){ //animate
 
-            if ( ! isNaN( hier.position.angleTo(point) ) ){
+          rotation_funct(point, invisibleBox);
+
+          /*  if ( ! isNaN( hier.position.angleTo(point) ) ){
                 hier.rotation.z += hier.position.angleTo(point);
-            }
+            }*/
 
             var rootInit = { x : invisibleBox.position.x , y : invisibleBox.position.y };
             var rootFinal = { x : point.x , y : point.y };
@@ -519,7 +556,7 @@ function kitchen(){
                     tween.stop();
                     var func = setInterval(function(){
                         console.log('gameOver')
-                       alert("Game Over\nThe Robot Collided in bedroom");
+                       alert("Game Over!\nThe Robot Collided in the Kitchen!");
                        window.location.replace("index.html");
                        clearInterval(func);
                      }, 500);
@@ -635,7 +672,295 @@ function kitchen(){
             tweenARML1.start();
         }
     }
+  }
+
     window.addEventListener( 'click', onMouseClick, false );
+
+    function dabdanceanimation(robotSkeleton) {
+      var mainB = robotSkeleton.bones;
+      var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
+      var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
+      var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
+      var legL = mainB[0].children[1].children[0];
+      var legR = mainB[0].children[1].children[1];
+
+
+            // add tweenHEAD
+            var tweenHEAD = new TWEEN.Tween(head.rotation).to({
+              x: 0.6,
+              y: 1.2,
+              z: 0
+            }, 500).delay(200).start();
+            tweenHEAD.easing(TWEEN.Easing.Cubic.InOut);
+            tweenHEAD.repeat(1);
+            tweenHEAD.yoyo(true);
+
+            //ADD EVENTS TO TWEEN
+            tweenHEAD.onStart(function() {
+              console.log("start")
+            });
+            tweenHEAD.onComplete(function() {
+              console.log("complete")
+            });
+
+
+      // add tweenARML
+      var tweenARML = new TWEEN.Tween(armL.rotation).to({
+        x: -1.5,
+        y: -0.3,
+        z: -2.7
+      }, 500).delay(200).start();
+      tweenARML.easing(TWEEN.Easing.Cubic.InOut);
+      tweenARML.repeat(1);
+      tweenARML.yoyo(true);
+
+      //ADD EVENTS TO TWEEN
+      tweenARML.onStart(function() {
+        console.log("start")
+      });
+      tweenARML.onComplete(function() {
+        console.log("complete")
+      });
+
+      // add tweenARMR
+      var tweenARMR = new TWEEN.Tween(armR.rotation).to({
+        x: 1,
+        y:-1,
+        z: 1
+      }, 500).delay(200).start();
+      tweenARMR.easing(TWEEN.Easing.Cubic.InOut);
+      tweenARMR.repeat(1);
+      tweenARMR.yoyo(true);
+
+      //ADD EVENTS TO TWEEN
+      tweenARMR.onStart(function() {
+        console.log("start")
+      });
+      tweenARMR.onComplete(function() {
+        console.log("complete")
+          clicking=false; //reset the animation
+      });
+
+    }
+
+    function affermativeanimation(robotSkeleton) {
+      var mainB = robotSkeleton.bones;
+      var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
+      var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
+      var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
+      var legL = mainB[0].children[1].children[0];
+      var legR = mainB[0].children[1].children[1];
+
+      head.rotation.x = -0.3;
+      head.rotation.y = -0.031;
+      head.rotation.z = 0.055;
+
+      // add tweenHEAD
+      var tweenHEAD = new TWEEN.Tween(head.rotation).to({
+        x: 0.9,
+        y: -0.031,
+        z: 0.055
+      }, 500).delay(200).start();
+      tweenHEAD.easing(TWEEN.Easing.Cubic.InOut);
+      tweenHEAD.repeat(3);
+      tweenHEAD.yoyo(true);
+
+      //ADD EVENTS TO TWEEN
+      tweenHEAD.onStart(function() {
+        console.log("start")
+      });
+      tweenHEAD.onComplete(function() {
+        console.log("complete")
+      });
+
+            // add tweenARML
+            var tweenARMLup = new TWEEN.Tween(armL.rotation).to({
+              x: 0,
+              y:0,
+              z: -2.7
+            }, 500).delay(200).start();
+            tweenARMLup.repeat(3);
+            tweenARMLup.yoyo(true);
+            tweenARMLup.easing(TWEEN.Easing.Cubic.InOut);
+
+            // add tweenARMR
+            var tweenARMR = new TWEEN.Tween(armR.rotation).to({
+              x: 0,
+              y:0,
+              z: 2.7
+            }, 500).delay(200).start();
+            tweenARMR.easing(TWEEN.Easing.Cubic.InOut);
+            tweenARMR.repeat(3);
+            tweenARMR.yoyo(true);
+
+            //ADD EVENTS TO TWEEN
+            tweenARMR.onStart(function() {
+              console.log("start")
+            });
+            tweenARMR.onComplete(function() {
+              console.log("complete")
+                clicking=false; //reset the animation
+            });
+
+    }
+
+    function negativeanimation(robotSkeleton) {
+      var mainB = robotSkeleton.bones;
+      var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
+      var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
+      var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
+      var legL = mainB[0].children[1].children[0];
+      var legR = mainB[0].children[1].children[1];
+
+      head.rotation.x = -0.086;
+      head.rotation.y = 1.2;
+      head.rotation.z = 0.055;
+
+      // add tweenHEAD
+      var tweenHEAD = new TWEEN.Tween(head.rotation).to({
+        x: -0.086,
+        y: -1.2,
+        z: 0.055
+      }, 500).delay(200).start();
+      tweenHEAD.easing(TWEEN.Easing.Cubic.InOut);
+      tweenHEAD.repeat(3);
+      tweenHEAD.yoyo(true);
+
+      //ADD EVENTS TO TWEEN
+      tweenHEAD.onStart(function() {
+        console.log("start")
+      });
+      tweenHEAD.onComplete(function() {
+        console.log("complete")
+      });
+
+            // add tweenARML
+            var tweenARMLup = new TWEEN.Tween(armL.rotation).to({
+              x: 0,
+              y:0,
+              z: -2.7
+            }, 500).delay(200).start();
+            tweenARMLup.repeat(3);
+            tweenARMLup.yoyo(true);
+            tweenARMLup.easing(TWEEN.Easing.Cubic.InOut);
+
+            // add tweenARMR
+            var tweenARMR = new TWEEN.Tween(armR.rotation).to({
+              x: 0,
+              y:0,
+              z: 2.7
+            }, 500).delay(200).start();
+            tweenARMR.easing(TWEEN.Easing.Cubic.InOut);
+            tweenARMR.repeat(3);
+            tweenARMR.yoyo(true);
+
+            //ADD EVENTS TO TWEEN
+            tweenARMR.onStart(function() {
+              console.log("start")
+            });
+            tweenARMR.onComplete(function() {
+              console.log("complete")
+              clicking=false; //reset the animation
+            });
+
+    }
+
+    function helloanimation(robotSkeleton) {
+      var mainB = robotSkeleton.bones;
+      var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
+      var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
+      var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
+      var legL = mainB[0].children[1].children[0];
+      var legR = mainB[0].children[1].children[1];
+
+      // add tweenHEAD
+      var tweenHEAD = new TWEEN.Tween(head.rotation).to({
+        x: 0,
+        y: 0,
+        z: 0
+      }, 500).delay(200).start();
+      tweenHEAD.easing(TWEEN.Easing.Cubic.InOut);
+      tweenHEAD.repeat(1);
+      tweenHEAD.yoyo(true);
+
+      //ADD EVENTS TO TWEEN
+      tweenHEAD.onStart(function() {
+        console.log("start")
+      });
+      tweenHEAD.onComplete(function() {
+        console.log("complete")
+      });
+
+            // add tweenARML
+            var tweenARMLup = new TWEEN.Tween(armL.rotation).to({
+              x: -1.2,
+              y: -0.3,
+              z: -1.8
+            }, 500).delay(200).start();
+            tweenARMLup.repeat(1);
+            tweenARMLup.yoyo(true);
+            tweenARMLup.easing(TWEEN.Easing.Cubic.InOut);
+
+            // add tweenARMR
+            var tweenARMR = new TWEEN.Tween(armR.rotation).to({
+              x: 0,
+              y:0,
+              z: 2.7
+            }, 500).delay(200).start();
+            tweenARMR.easing(TWEEN.Easing.Cubic.InOut);
+            tweenARMR.repeat(1);
+            tweenARMR.yoyo(true);
+
+            //ADD EVENTS TO TWEEN
+            tweenARMR.onStart(function() {
+              console.log("start")
+            });
+            tweenARMR.onComplete(function() {
+              console.log("complete")
+              clicking=false; //reset the animation
+            });
+
+    }
+
+    function rotation_funct(point, invisibleBox, ) {
+      /*
+
+   Definire il vettore nella direzione in cui guarda il robot
+
+ */
+ var robotLookingAt = new THREE.Vector3( 0, 1, 0 ).normalize();
+
+
+     /*
+
+   Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
+
+ */
+
+ var newLookingAt = robotLookingAt;
+
+ newLookingAt.subVectors( point, invisibleBox.position ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
+
+    /*
+
+  CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
+
+ */
+
+ var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
+
+ /*
+
+  RUOTARE PERSONAGGIO E VETTORE robotLookingAt
+
+ */
+ invisibleBox.rotation.y += angleOfRotation;
+
+ //update robotLookingAt
+ var axis = new THREE.Vector3( 0, 1, 0 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
+
+ robotLookingAt.applyAxisAngle( axis, angleOfRotation );
+    }
 
     function animate() {
 
