@@ -22,7 +22,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 1.7, 1.9, 2.9 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -33,7 +33,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 10, 2.3, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -44,7 +44,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 2.3, 2.8, 2.8 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -56,7 +56,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 1, 1, 4.1 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -67,7 +67,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 1.6, 1.8 , 4.1 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -78,7 +78,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 1.6, 1.8 , 4.1 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -89,7 +89,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 2.4, 3.3, 3.6 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -100,7 +100,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 10, 1, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -111,7 +111,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 0.8, 10, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -122,7 +122,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 1.1, 10, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -133,7 +133,7 @@ function kitchen(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 20, 1.3, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.3,
+                opacity: 0.0,
                 transparent: true
             } )
         ),
@@ -156,37 +156,8 @@ function kitchen(){
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff );
 
-    /*var gui = new dat.GUI();
-    var  boxmeshutil = new THREE.Mesh(
-        new THREE.CubeGeometry( 5 , 5, 5 ),
-        new THREE.MeshStandardMaterial( {
-            opacity: 0.3,
-            transparent: true
-        } )
-    );
-
-
-    scene.add(
-        boxmeshutil
-    );
-
-    var f1 = gui.addFolder('Box Position');
-    f1.add( boxmeshutil.position , 'x', -100, 100 ).step(1);
-    f1.add( boxmeshutil.position , 'y', -100, 100 ).step(1);
-    f1.add( boxmeshutil.position , 'z', -100, 100 ).step(1);
-
-    var f2 = gui.addFolder('Box Size');
-    f2.add( boxmeshutil.scale , 'x', 0, 5 ).step(0.1);
-    f2.add( boxmeshutil.scale , 'y', 0, 5 ).step(0.1);
-    f2.add( boxmeshutil.scale , 'z', 0, 5 ).step(0.1);
-
-    var f3 = gui.addFolder('Box Rotation');
-    f3.add( boxmeshutil.rotation , 'x', -10, 10 ).step(0.1);
-    f3.add( boxmeshutil.rotation , 'y', -10, 10 ).step(0.1);
-    f3.add( boxmeshutil.rotation , 'z', -10, 10 ).step(0.1);*/
-
-    var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    camera.position.set(-12,-1,20);
+    var camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    camera.position.set(20,-25,30);
     camera.up = new THREE.Vector3(0,0,1);
     camera.lookAt(new THREE.Vector3(0,0,20));
 
@@ -367,6 +338,8 @@ function kitchen(){
             modelChar.rotation.x += Math.PI/2;
             modelChar.position.z += 2;
 
+            modelChar.scale.set(1.9,1.9,1.9);
+
             scene.add( modelChar );
 
 
@@ -377,7 +350,7 @@ function kitchen(){
             invisibleBox = new THREE.Mesh(
                 new THREE.CubeGeometry( size.x/2, size.y, size.z ),
                 new THREE.MeshStandardMaterial( {
-                    opacity: 0.3,
+                    opacity: 0.0,
                     transparent: true
                 } )
             );
@@ -400,7 +373,7 @@ function kitchen(){
                         glassesAreLoaded = true;
                         var box = new THREE.Box3().setFromObject( modelChar );
                         glasses.scale.set(0.1,0.15,0.15);
-                        //glasses.rotation.x += Math.PI/2;
+
                         glasses.position.z += box.getSize().z/2 -0.7;
                         glasses.position.y = box.getSize().y + 1 ;
                         modelChar.add(glasses);
