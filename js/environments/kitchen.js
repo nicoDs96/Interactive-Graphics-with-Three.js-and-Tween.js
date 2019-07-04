@@ -377,8 +377,9 @@ function kitchen(){
                         var box = new THREE.Box3().setFromObject( modelChar );
                         glasses.scale.set(0.1,0.15,0.15);
 
-                        glasses.position.z += box.getSize().z/2 -0.7;
-                        glasses.position.y = box.getSize().y + 1 ;
+                        glasses.position.z += box.getSize().z/2 -2.5;
+                        glasses.position.y = box.getSize().y - 1.5 ;
+                        glasses.position.x += -0.1 ;
                         modelChar.add(glasses);
                     }
                 }, 500);
@@ -494,21 +495,14 @@ function kitchen(){
       document.getElementById("dabdance").onclick = function(e){
         clicking=true;
         console.log("animation dabdance executing");
-        dabdanceanimation(robotSkeleton);
+        dabdanceanimation(robotSkeleton, glasses);
       };
 
       document.getElementById("affermative_movement").onclick = function(e){
         clicking=true;
         console.log("animation affermative movement executing");
-        affermativeanimation(robotSkeleton);
+        affermativeanimation(robotSkeleton,glasses);
       };
-
-      document.getElementById("negative_movement").onclick = function(e){
-        clicking=true;
-        console.log("animation negative movement executing");
-        negativeanimation(robotSkeleton);
-      };
-
 
 
       console.log("debug click" + clicking);
@@ -566,123 +560,164 @@ function kitchen(){
                 }
             });
 
-            tween.start();
-            var tweenLEGL1 = new TWEEN.Tween(legL.rotation).to({
-                x: 1,
-                y: 0,
-                z: 0.2
-            }, 500).delay(100); //start
-            tweenLEGL1.easing(TWEEN.Easing.Cubic.InOut);
-            tweenLEGL1.yoyo(true);
+            walkingAnimation(robotSkeleton);
 
-            tweenLEGL1.onStart(function() {
-                //console.log("start")
-            });
-            tweenLEGL1.onComplete(function() {
-                //console.log("complete")
-            });
-
-            var tweenLEGL2 = new TWEEN.Tween(legL.rotation).to({
-                x: 2.7,
-                y: -0.16,
-                z: -0.075
-            }, 500).delay(100); //start
-            tweenLEGL2.easing(TWEEN.Easing.Cubic.InOut);
-            tweenLEGL2.yoyo(true);
-
-
-            // add tweenLEGR
-            var tweenLEGR1 = new TWEEN.Tween(legR.rotation).to({
-                x: 4,
-                y: 0,
-                z: 0.2
-            }, 500).delay(100);
-            tweenLEGR1.easing(TWEEN.Easing.Cubic.InOut);
-            tweenLEGR1.yoyo(true);
-
-            var tweenLEGR2 = new TWEEN.Tween(legR.rotation).to({
-                x: 2.7,
-                y: 0.25,
-                z: 0.12
-            }, 500).delay(100);
-            tweenLEGR2.easing(TWEEN.Easing.Cubic.InOut);
-            tweenLEGR2.yoyo(true);
-
-            var tweenHEAD1 = new TWEEN.Tween(head.rotation).to({
-                x: -0.3,
-                y: -0.031,
-                z: 0.055
-            }, 500).delay(100);
-            tweenHEAD1.easing(TWEEN.Easing.Cubic.InOut);
-            tweenHEAD1.yoyo(true);
-
-            var tweenHEAD2 = new TWEEN.Tween(head.rotation).to({
-                x: -0.086,
-                y: -0.031,
-                z: 0.055
-            }, 500).delay(100);
-            tweenHEAD2.easing(TWEEN.Easing.Cubic.InOut);
-            tweenHEAD2.yoyo(true);
-
-            // add tweenARML
-            var tweenARML1 = new TWEEN.Tween(armL.rotation).to({
-                x: -0.9,
-                y: 0,
-                z: -2.7
-            }, 500).delay(100);
-            tweenARML1.easing(TWEEN.Easing.Cubic.InOut);
-            tweenARML1.yoyo(true);
-
-            var tweenARML2 = new TWEEN.Tween(armL.rotation).to({
-                x: -0.11,
-                y: 0,
-                z: -2.7
-            }, 500).delay(100);
-            tweenARML2.easing(TWEEN.Easing.Cubic.InOut);
-            tweenARML2.yoyo(true);
-
-            // add tweenARMR
-            var tweenARMR1 = new TWEEN.Tween(armR.rotation).to({
-                x: -0.9,
-                y: 0,
-                z: 2.7
-            }, 500).delay(100);
-            tweenARMR1.easing(TWEEN.Easing.Cubic.InOut);
-            tweenARMR1.yoyo(true);
-
-            var tweenARMR2 = new TWEEN.Tween(armR.rotation).to({
-                x: -0.11,
-                y: 0,
-                z: 2.7
-            }, 500).delay(100);
-            tweenARMR2.easing(TWEEN.Easing.Cubic.InOut);
-            tweenARMR2.yoyo(true);
-
-
-            tweenHEAD1.chain(tweenHEAD2);
-            tweenLEGR1.chain(tweenLEGR2);
-            tweenLEGL1.chain(tweenLEGL2);
-            tweenARML1.chain(tweenARML2);
-            tweenARMR1.chain(tweenARMR2);
-
-            tweenHEAD1.start();
-            tweenLEGR1.start();
-            tweenLEGL1.start();
-            tweenARMR1.start();
-            tweenARML1.start();
         }
     }
   }
 
     window.addEventListener( 'click', onMouseClick, false );
 
-    function dabdanceanimation(robotSkeleton) {
+    function walkingAnimation(robotSkeleton) {
       var mainB = robotSkeleton.bones;
       var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
       var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
       var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
       var legL = mainB[0].children[1].children[0];
       var legR = mainB[0].children[1].children[1];
+
+      tween.start();
+      var tweenLEGL1 = new TWEEN.Tween(legL.rotation).to({
+          x: 1,
+          y: 0,
+          z: 0.2
+      }, 500).delay(100); //start
+      tweenLEGL1.easing(TWEEN.Easing.Cubic.InOut);
+      tweenLEGL1.yoyo(true);
+
+      tweenLEGL1.onStart(function() {
+          //console.log("start")
+      });
+      tweenLEGL1.onComplete(function() {
+          //console.log("complete")
+      });
+
+      var tweenLEGL2 = new TWEEN.Tween(legL.rotation).to({
+          x: 2.7,
+          y: -0.16,
+          z: -0.075
+      }, 500).delay(100); //start
+      tweenLEGL2.easing(TWEEN.Easing.Cubic.InOut);
+      tweenLEGL2.yoyo(true);
+
+
+      // add tweenLEGR
+      var tweenLEGR1 = new TWEEN.Tween(legR.rotation).to({
+          x: 4,
+          y: 0,
+          z: 0.2
+      }, 500).delay(100);
+      tweenLEGR1.easing(TWEEN.Easing.Cubic.InOut);
+      tweenLEGR1.yoyo(true);
+
+      var tweenLEGR2 = new TWEEN.Tween(legR.rotation).to({
+          x: 2.7,
+          y: 0.25,
+          z: 0.12
+      }, 500).delay(100);
+      tweenLEGR2.easing(TWEEN.Easing.Cubic.InOut);
+      tweenLEGR2.yoyo(true);
+
+      var tweenHEAD1 = new TWEEN.Tween(head.rotation).to({
+          x: -0.3,
+          y: -0.031,
+          z: 0.055
+      }, 500).delay(100);
+      tweenHEAD1.easing(TWEEN.Easing.Cubic.InOut);
+      tweenHEAD1.yoyo(true);
+
+      var tweenHEAD2 = new TWEEN.Tween(head.rotation).to({
+          x: -0.086,
+          y: -0.031,
+          z: 0.055
+      }, 500).delay(100);
+      tweenHEAD2.easing(TWEEN.Easing.Cubic.InOut);
+      tweenHEAD2.yoyo(true);
+
+      // add tweenARML
+      var tweenARML1 = new TWEEN.Tween(armL.rotation).to({
+          x: -0.9,
+          y: 0,
+          z: -2.7
+      }, 500).delay(100);
+      tweenARML1.easing(TWEEN.Easing.Cubic.InOut);
+      tweenARML1.yoyo(true);
+
+      var tweenARML2 = new TWEEN.Tween(armL.rotation).to({
+          x: -0.11,
+          y: 0,
+          z: -2.7
+      }, 500).delay(100);
+      tweenARML2.easing(TWEEN.Easing.Cubic.InOut);
+      tweenARML2.yoyo(true);
+
+      // add tweenARMR
+      var tweenARMR1 = new TWEEN.Tween(armR.rotation).to({
+          x: -0.9,
+          y: 0,
+          z: 2.7
+      }, 500).delay(100);
+      tweenARMR1.easing(TWEEN.Easing.Cubic.InOut);
+      tweenARMR1.yoyo(true);
+
+      var tweenARMR2 = new TWEEN.Tween(armR.rotation).to({
+          x: -0.11,
+          y: 0,
+          z: 2.7
+      }, 500).delay(100);
+      tweenARMR2.easing(TWEEN.Easing.Cubic.InOut);
+      tweenARMR2.yoyo(true);
+
+
+      tweenHEAD1.chain(tweenHEAD2);
+      tweenLEGR1.chain(tweenLEGR2);
+      tweenLEGL1.chain(tweenLEGL2);
+      tweenARML1.chain(tweenARML2);
+      tweenARMR1.chain(tweenARMR2);
+
+      tweenHEAD1.start();
+      tweenLEGR1.start();
+      tweenLEGL1.start();
+      tweenARMR1.start();
+      tweenARML1.start();
+    }
+
+    function dabdanceanimation(robotSkeleton, glasses) {
+      var mainB = robotSkeleton.bones;
+      var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
+      var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
+      var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
+      var legL = mainB[0].children[1].children[0];
+      var legR = mainB[0].children[1].children[1];
+
+
+
+        if( getCookie('glasses') == 'yes'){
+          console.log("glasses ACTIVE IN DAB ANIMATION!")
+
+          var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+            x: 0.6,
+            y: 1.2,
+            z: 0
+          }, 500).delay(200).start();
+          tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+          tweenGlasses.repeat(1);
+          tweenGlasses.yoyo(true);
+
+          var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
+            x: 0.6,
+            y: 1.2,
+            z: 0
+          }, 500).delay(200).start();
+          tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
+          tweenGlasses2.repeat(1);
+          tweenGlasses2.yoyo(true);
+
+        }
+
+        if( getCookie('hat') == 'yes'){
+          console.log("hat ACTIVE IN DAB ANIMATION!")
+        }
 
 
             // add tweenHEAD
@@ -743,7 +778,7 @@ function kitchen(){
 
     }
 
-    function affermativeanimation(robotSkeleton) {
+    function affermativeanimation(robotSkeleton,glasses) {
       var mainB = robotSkeleton.bones;
       var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
       var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
@@ -755,6 +790,33 @@ function kitchen(){
       head.rotation.y = -0.031;
       head.rotation.z = 0.055;
 
+      if( getCookie('glasses') == 'yes'){
+        console.log("glasses ACTIVE IN affermative ANIMATION!")
+
+        var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+          x: 0.6,
+          y: 1.2,
+          z: 0
+        }, 500).delay(200).start();
+        tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+        tweenGlasses.repeat(1);
+        tweenGlasses.yoyo(true);
+
+        var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
+          x: 0.6,
+          y: 1.2,
+          z: 0
+        }, 500).delay(200).start();
+        tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
+        tweenGlasses2.repeat(1);
+        tweenGlasses2.yoyo(true);
+
+      }
+
+      if( getCookie('hat') == 'yes'){
+        console.log("hat ACTIVE IN affermative ANIMATION!")
+      }
+
       // add tweenHEAD
       var tweenHEAD = new TWEEN.Tween(head.rotation).to({
         x: 0.9,
@@ -762,7 +824,7 @@ function kitchen(){
         z: 0.055
       }, 500).delay(200).start();
       tweenHEAD.easing(TWEEN.Easing.Cubic.InOut);
-      tweenHEAD.repeat(3);
+      tweenHEAD.repeat(1);
       tweenHEAD.yoyo(true);
 
       //ADD EVENTS TO TWEEN
@@ -779,7 +841,7 @@ function kitchen(){
               y:0,
               z: -2.7
             }, 500).delay(200).start();
-            tweenARMLup.repeat(3);
+            tweenARMLup.repeat(1);
             tweenARMLup.yoyo(true);
             tweenARMLup.easing(TWEEN.Easing.Cubic.InOut);
 
@@ -790,7 +852,7 @@ function kitchen(){
               z: 2.7
             }, 500).delay(200).start();
             tweenARMR.easing(TWEEN.Easing.Cubic.InOut);
-            tweenARMR.repeat(3);
+            tweenARMR.repeat(1);
             tweenARMR.yoyo(true);
 
             //ADD EVENTS TO TWEEN
@@ -804,66 +866,7 @@ function kitchen(){
 
     }
 
-    function negativeanimation(robotSkeleton) {
-      var mainB = robotSkeleton.bones;
-      var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
-      var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
-      var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
-      var legL = mainB[0].children[1].children[0];
-      var legR = mainB[0].children[1].children[1];
 
-      head.rotation.x = -0.086;
-      head.rotation.y = 1.2;
-      head.rotation.z = 0.055;
-
-      // add tweenHEAD
-      var tweenHEAD = new TWEEN.Tween(head.rotation).to({
-        x: -0.086,
-        y: -1.2,
-        z: 0.055
-      }, 500).delay(200).start();
-      tweenHEAD.easing(TWEEN.Easing.Cubic.InOut);
-      tweenHEAD.repeat(3);
-      tweenHEAD.yoyo(true);
-
-      //ADD EVENTS TO TWEEN
-      tweenHEAD.onStart(function() {
-        console.log("start")
-      });
-      tweenHEAD.onComplete(function() {
-        console.log("complete")
-      });
-
-            // add tweenARML
-            var tweenARMLup = new TWEEN.Tween(armL.rotation).to({
-              x: 0,
-              y:0,
-              z: -2.7
-            }, 500).delay(200).start();
-            tweenARMLup.repeat(3);
-            tweenARMLup.yoyo(true);
-            tweenARMLup.easing(TWEEN.Easing.Cubic.InOut);
-
-            // add tweenARMR
-            var tweenARMR = new TWEEN.Tween(armR.rotation).to({
-              x: 0,
-              y:0,
-              z: 2.7
-            }, 500).delay(200).start();
-            tweenARMR.easing(TWEEN.Easing.Cubic.InOut);
-            tweenARMR.repeat(3);
-            tweenARMR.yoyo(true);
-
-            //ADD EVENTS TO TWEEN
-            tweenARMR.onStart(function() {
-              console.log("start")
-            });
-            tweenARMR.onComplete(function() {
-              console.log("complete")
-              clicking=false; //reset the animation
-            });
-
-    }
 
     function helloanimation(robotSkeleton) {
       var mainB = robotSkeleton.bones;
@@ -872,6 +875,26 @@ function kitchen(){
       var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
       var legL = mainB[0].children[1].children[0];
       var legR = mainB[0].children[1].children[1];
+
+      if( getCookie('glasses') == 'yes'){
+        console.log("glasses ACTIVE IN hello ANIMATION!")
+
+        var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+          x: 0,
+          y: 0,
+          z: 0
+        }, 500).delay(200).start();
+        tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+        tweenGlasses.repeat(1);
+        tweenGlasses.yoyo(true);
+
+
+
+      }
+
+      if( getCookie('hat') == 'yes'){
+        console.log("hat ACTIVE IN hello ANIMATION!")
+      }
 
       // add tweenHEAD
       var tweenHEAD = new TWEEN.Tween(head.rotation).to({
