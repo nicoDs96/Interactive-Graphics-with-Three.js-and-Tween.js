@@ -517,6 +517,12 @@ function kitchen(){
 
                 if(collided){
                     tween.stop();
+                    var func = setInterval(function(){
+                        console.log('gameOver')
+                       alert("Game Over\nThe Robot Collided in bedroom");
+                       window.location.replace("index.html");
+                       clearInterval(func);
+                     }, 500);
                 }else{
                     invisibleBox.position.x = rootInit.x;
                     invisibleBox.position.y = rootInit.y;
