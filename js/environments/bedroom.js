@@ -13,7 +13,7 @@ function bedroom(){
     loaded = false;
     var robotLookingAt = new THREE.Vector3( 0, -1, 0 ).normalize();
 
-    var OPACITY = 0.3;
+    var OPACITY = 0.0;
 
 
     GYM_SPH_BOX = {
@@ -399,7 +399,7 @@ function onMouseClick( event ) {
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
-    raycaster.linePrecision = 0.1; 
+    raycaster.linePrecision = 0.1;
     // update the picking ray with the camera and mouse position
     raycaster.setFromCamera( mouse, camera );
 
@@ -414,7 +414,7 @@ function onMouseClick( event ) {
         if ( ! isNaN( invisibleBox.position.angleTo(point) ) ){
             //hier.rotation.z += hier.position.angleTo(point)
             console.log("-------------------------------NEW CLICK-----------------------------------------")
-            console.log("");
+            console.log("DEBUG STUFF, TO DELETE");
             console.log("current robotLookingAt:");
             console.log(robotLookingAt);
 
@@ -443,6 +443,7 @@ function onMouseClick( event ) {
             var axis = new THREE.Vector3( 0, 0, 1 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
 
             robotLookingAt.applyAxisAngle( axis, angleOfRotation );
+            
 
             console.log("ipdated robotLookingAt");
             console.log(robotLookingAt);
