@@ -305,21 +305,21 @@ loaded = false;
                   tweenARMR2.stop();
                   tweenARML2.stop();
                   //-----------------------------
-                  legL.rotation.x=0;
-                  legL.rotation.y=0;
-                  legL.rotation.z=0;
-                  legR.rotation.x=0;
-                  legR.rotation.y=0;
-                  legR.rotation.z=0;
-                  armL.rotation.x=0;
-                  armL.rotation.y=0;
-                  armL.rotation.z=0;
-                  armR.rotation.x=0;
-                  armR.rotation.y=0;
-                  armR.rotation.z=0;
-                  head.rotation.x=0;
-                  head.rotation.y=0;
-                  head.rotation.z=0;
+                  // legL.rotation.x=0;
+                  // legL.rotation.y=0;
+                  // legL.rotation.z=0;
+                  // legR.rotation.x=0;
+                  // legR.rotation.y=0;
+                  // legR.rotation.z=0;
+                  // armL.rotation.x=0;
+                  // armL.rotation.y=0;
+                  // armL.rotation.z=0;
+                  // armR.rotation.x=0;
+                  // armR.rotation.y=0;
+                  // armR.rotation.z=0;
+                  // head.rotation.x=0;
+                  // head.rotation.y=0;
+                  // head.rotation.z=0;
                   //----------------------------
               });
               tween.onUpdate(function(){
