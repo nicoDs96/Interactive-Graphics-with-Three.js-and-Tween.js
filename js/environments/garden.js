@@ -3,6 +3,11 @@ function garden(){
 
 document.getElementById("loading").setAttribute("hidden","true");
 var loadedV = [];
+loadedV[0] = false;
+loadedV[1] = false;
+loadedV[2] = false;
+loadedV[3] = false;
+loadedV[4] = false;
 loaded = false;
 
 
@@ -248,41 +253,7 @@ loaded = false;
         glasses.position.y += box.getSize().y -0.75 ;
         modelChar.add(glasses);
       }
-     }, 500);}
-     if( getCookie('hat') == 'yes'){
-        var loader = new THREE.GLTFLoader();
-        loader.load('models/accessories/hat/scene.gltf',
-        function ( gltf ) {
-        hat = gltf.scene;
-        hat.traverse( function ( object ) {
-        if ( object.isMesh ){
-            object.castShadow = true;
-        }});
-        hat.scale.set(0.05, 0.05, 0.05);
-        hat.position.set(0, 4, 0);
-        },
-        function ( xhr ) {
-            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: hat' );
-        },
-        function ( error ) {
-            console.log( 'An error happened' );
-        });
-        checkHat = setInterval(function(){
-            if(hat == null){
-                ;
-            }
-            else{
-                clearInterval(checkHat);
-                hatIsLoaded = true;
-                hat.scale.set(
-                    hat.scale.x*0.3,
-                    hat.scale.y*0.2,
-                    hat.scale.z*0.2
-                );
-                var box = new THREE.Box3().setFromObject( modelChar );
-                modelChar.add(hat);
-        }}, 500);
-   }},
+     }, 500);}},
    function ( xhr ) {
    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: robot' );
    if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
@@ -333,6 +304,23 @@ loaded = false;
                   tweenLEGL2.stop();
                   tweenARMR2.stop();
                   tweenARML2.stop();
+                  //-----------------------------
+                  legL.rotation.x=0;
+                  legL.rotation.y=0;
+                  legL.rotation.z=0;
+                  legR.rotation.x=0;
+                  legR.rotation.y=0;
+                  legR.rotation.z=0;
+                  armL.rotation.x=0;
+                  armL.rotation.y=0;
+                  armL.rotation.z=0;
+                  armR.rotation.x=0;
+                  armR.rotation.y=0;
+                  armR.rotation.z=0;
+                  head.rotation.x=0;
+                  head.rotation.y=0;
+                  head.rotation.z=0;
+                  //----------------------------
               });
               tween.onUpdate(function(){
                   invisibleBox.position.x = rootInit.x;
