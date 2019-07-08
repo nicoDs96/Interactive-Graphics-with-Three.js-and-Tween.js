@@ -18,6 +18,9 @@ function setUpListeners( ){
         renderer.setSize( window.innerWidth, window.innerHeight );
 
     }, false );
+    document.getElementById("exit").onclick = function(e){
+        window.location.replace("index.html");
+    };
 
 }
 
@@ -52,35 +55,6 @@ function setUpMenuListeners(){
 
     };
 
-    document.getElementById("hat").onclick = function(){
-        if (document.getElementById("hat").innerHTML == "Add Hat"){
-            drawHat();
-            checkHat = setInterval(function(){
-                if(hat == null){
-                    document.getElementById("hat").setAttribute("disabled", "true");
-                }else{
-                    document.getElementById("hat").innerHTML = "Remove Hat";
-
-                    clearInterval(checkHat);
-                    hatIsLoaded = true;
-                    document.getElementById("hat").removeAttribute("disabled");
-                    hat.scale.set(
-                        hat.scale.x*0.6,
-                        hat.scale.y*0.4,
-                        hat.scale.z*0.4
-                    );
-                    var box = new THREE.Box3().setFromObject( model );
-                    hat.position.y += box.getSize().y * 3 / 6 ;
-                    hier.add(hat);
-                }
-
-            }, 500);
-        }else{
-            hier.remove(hat);
-            document.getElementById("hat").innerHTML = "Add Hat";
-        }
-
-    };
 
     document.getElementById("customize").onclick = function(){
 
@@ -101,12 +75,6 @@ function setUpMenuListeners(){
         }
         else{
             document.cookie = "glasses=yes;";
-        }
-        if(document.getElementById("hat").innerHTML == "Add Hat"){
-            document.cookie = "hat=no;";
-        }
-        else{
-            document.cookie = "hat=yes;";
         }
         console.log('customization parameters:');
         console.log(document.cookie);

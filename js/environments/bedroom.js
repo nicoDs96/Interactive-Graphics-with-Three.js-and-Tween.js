@@ -2,29 +2,25 @@ var camera;
 var renderer;
 function bedroom(){
 
-    var model,modelChar, box, checkHat, checkGlasses,hier;
-    var hat = null;
+    var model,modelChar, box, checkGlasses;
     var glasses = null;
-    var hatIsLoaded = false;
-    var custFlag =false
-    var glassesAreLoaded = false;
-    var modelMeshes =[];
     var rootBone = [];
     var robotSkeleton;
     var invisibleBox;
     var collidableBoxes = [];
     var collided;
     var tween;
-    var loading;
     loaded = false;
     var robotLookingAt = new THREE.Vector3( 0, -1, 0 ).normalize();
+
+    var OPACITY = 0.3;
 
 
     GYM_SPH_BOX = {
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -35,7 +31,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -46,7 +42,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -57,7 +53,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -68,7 +64,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -79,7 +75,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -90,7 +86,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -101,7 +97,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -112,7 +108,7 @@ function bedroom(){
         mesh: new THREE.Mesh(
             new THREE.CubeGeometry( 5, 5, 5 ),
             new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
+                opacity: OPACITY,
                 transparent: true
             } )
         ),
@@ -271,12 +267,12 @@ loader.load(
     // called while loading is progressing (onProgress)
     function ( xhr ) {
         console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-        if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
-            if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+        if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){ //if they are all number variables
+            if(  (xhr.loaded / xhr.total) > 0.90  ){
                 console.log('room scene loaded');
                 loaded = true;
             }
-        }else{
+        }else{ //loading utily non working
             alert('the loading utility is currently down, please wait the models load before starting to play.');
             loaded = true;
         }
@@ -361,69 +357,6 @@ loaderChar.load(
                 }
             }, 500);
         }
-        if( getCookie('hat') == 'yes'){
-            var loader = new THREE.GLTFLoader();
-            loader.load(
-                // resource URL
-                'models/accessories/hat/scene.gltf',
-                // called when the resource is loaded
-                function ( gltf ) {
-
-                    hat = gltf.scene;
-                    //console.log(hat);
-                    hat.traverse( function ( object ) {
-                        if ( object.isMesh ){
-                            object.castShadow = true;
-                        }
-                    } );
-                    hat.scale.set(0.05, 0.05, 0.05);
-                    hat.position.set(0, 4.25, 0);
-
-                },
-                // called while loading is progressing
-                function ( xhr ) {
-                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-                    if(  xhr.loaded / xhr.total > 0.90  ){
-                        if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
-                            if( (xhr.loaded / xhr.total) > 0.90  ){
-                                console.log('hat scene loaded');
-                                loaded = true;
-                            }
-                        }else{
-                            alert('the loading utility is currently down, please wait the models load before starting to play.');
-                            loaded = true;
-                        }
-                    }
-                },
-                // called when loading has errors
-                function ( error ) {
-                    console.log( 'An error happened BOCCIATI' );
-                    console.error(error);
-                }
-            );
-            checkHat = setInterval(function(){
-                if(hat == null){
-                    ;
-                }
-                else{
-                    //console.log('hat not null');
-                    clearInterval(checkHat);
-                    hatIsLoaded = true;
-                    hat.scale.set(
-                        hat.scale.x*0.3,
-                        hat.scale.y*0.2,
-                        hat.scale.z*0.2
-                    );
-                    //var box = new THREE.Box3().setFromObject( modelChar );
-                    //hat.rotation.x += Math.PI/2;
-                    //hat.position.z += box.getSize().z*2 ;
-                    //hat.position.x -= box.getSize().x ;
-                    modelChar.add(hat);
-                }
-
-            }, 500);
-
-        }
 
     },
     // called while loading is progressing
@@ -466,6 +399,7 @@ function onMouseClick( event ) {
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
+    raycaster.linePrecision = 0.1; 
     // update the picking ray with the camera and mouse position
     raycaster.setFromCamera( mouse, camera );
 
@@ -479,8 +413,9 @@ function onMouseClick( event ) {
 
         if ( ! isNaN( invisibleBox.position.angleTo(point) ) ){
             //hier.rotation.z += hier.position.angleTo(point)
-
-            console.log("current robotLookingAt");
+            console.log("-------------------------------NEW CLICK-----------------------------------------")
+            console.log("");
+            console.log("current robotLookingAt:");
             console.log(robotLookingAt);
 
             //Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
@@ -509,7 +444,7 @@ function onMouseClick( event ) {
 
             robotLookingAt.applyAxisAngle( axis, angleOfRotation );
 
-            console.log("new robotLookingAt");
+            console.log("ipdated robotLookingAt");
             console.log(robotLookingAt);
 
         }

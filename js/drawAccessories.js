@@ -47,35 +47,3 @@ function drawGlasses(){
     return group;
 
 }
-
-
-function drawHat(){
-    var loader = new THREE.GLTFLoader();
-    loader.load(
-    	// resource URL
-    	'models/accessories/hat/scene.gltf',
-    	// called when the resource is loaded
-    	function ( gltf ) {
-
-    		hat = gltf.scene;
-            //console.log(hat);
-    		hat.traverse( function ( object ) {
-    			if ( object.isMesh ){
-    				object.castShadow = true;
-    			}
-    		} );
-            hat.scale.set(0.05, 0.05, 0.05);
-            hat.position.set(0, 0, 0);
-
-    	},
-    	// called while loading is progressing
-    	function ( xhr ) {
-    		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-    	},
-    	// called when loading has errors
-    	function ( error ) {
-    		console.log( 'An error happened BOCCIATI' );
-    		console.error(error);
-    	}
-    );
-}
