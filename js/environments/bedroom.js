@@ -17,6 +17,7 @@ function bedroom(){
     var tween;
     var loading;
     loaded = false;
+    var robotLookingAt = new THREE.Vector3( 0, -1, 0 ).normalize();
 
 
     GYM_SPH_BOX = {
@@ -479,10 +480,7 @@ function onMouseClick( event ) {
         if ( ! isNaN( invisibleBox.position.angleTo(point) ) ){
             //hier.rotation.z += hier.position.angleTo(point)
 
-            //Definire il vettore nella direzione in cui guarda il robot
-
-            var robotLookingAt = new THREE.Vector3( 0, -1, 0 ).normalize();
-            console.log("robotLookingAt");
+            console.log("current robotLookingAt");
             console.log(robotLookingAt);
 
             //Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
@@ -501,7 +499,7 @@ function onMouseClick( event ) {
 
             //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
 
-            invisibleBox.rotation.z -= angleOfRotation;
+            invisibleBox.rotation.z += angleOfRotation;
 
             console.log("invisibleBox.rotation");
             console.log(invisibleBox.rotation);
@@ -511,7 +509,7 @@ function onMouseClick( event ) {
 
             robotLookingAt.applyAxisAngle( axis, angleOfRotation );
 
-            console.log("robotLookingAt");
+            console.log("new robotLookingAt");
             console.log(robotLookingAt);
 
         }
