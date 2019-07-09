@@ -1,12 +1,15 @@
 function setUpListeners( ){
     document.getElementById("bedroom").onclick = function(e){
+        e.preventDefault();
         window.location.replace("bedroom.html");
     };
     document.getElementById("kitchen").onclick = function(e){
+        e.preventDefault();
         window.location.replace("kitchen.html");
 
     };
     document.getElementById("garden").onclick = function(e){
+        e.preventDefault();
         window.location.replace("garden.html");
 
     };
@@ -19,6 +22,7 @@ function setUpListeners( ){
 
     }, false );
     document.getElementById("exit").onclick = function(e){
+        e.preventDefault();
         window.location.replace("index.html");
     };
 
