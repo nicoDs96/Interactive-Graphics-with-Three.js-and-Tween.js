@@ -388,21 +388,21 @@ document.getElementById("hello").onclick = function(e){
     e.stopPropagation();
     clicking=true;
     console.log("animation hello executing");
-    helloanimation(robotSkeleton,glasses);
+    helloanimation(robotSkeleton,glasses,"bedroom");
 };
 
 document.getElementById("dabdance").onclick = function(e){
     e.stopPropagation();
     clicking=true;
     console.log("animation dabdance executing");
-    dabdanceanimation(robotSkeleton, glasses);
+    dabdanceanimation(robotSkeleton, glasses,"bedroom");
 };
 
 document.getElementById("affermative_movement").onclick = function(e){
     e.stopPropagation();
     clicking=true;
     console.log("animation affermative movement executing");
-    affermativeanimation(robotSkeleton,glasses);
+    affermativeanimation(robotSkeleton,glasses,"bedroom");
 };
 
 /**

@@ -59,13 +59,10 @@ function checkCollision( invisibleBox, boxList){
 
 }
 
-
 /*
 Animations
 */
-
-
-function dabdanceanimation(robotSkeleton, glasses) {
+function dabdanceanimation(robotSkeleton, glasses, room) {
     var mainB = robotSkeleton.bones;
     var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
     var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
@@ -74,29 +71,36 @@ function dabdanceanimation(robotSkeleton, glasses) {
     var legR = mainB[0].children[1].children[1];
 
 
+    if(room =='garden'){
 
-    if( getCookie('glasses') == 'yes'){
-        console.log("glasses ACTIVE IN DAB ANIMATION!")
+    }if (room == "kitchen"){
+        if( getCookie('glasses') == 'yes'){
+            console.log("glasses ACTIVE IN DAB ANIMATION!")
 
-        var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
-            x: 0.6,
-            y: 1.2,
-            z: 0
-        }, 500).delay(200).start();
-        tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
-        tweenGlasses.repeat(1);
-        tweenGlasses.yoyo(true);
+            var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+                x: 0.6,
+                y: 1.2,
+                z: 0
+            }, 500).delay(200).start();
+            tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+            tweenGlasses.repeat(1);
+            tweenGlasses.yoyo(true);
 
-        var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
-            x: 0.6,
-            y: 1.2,
-            z: 0
-        }, 500).delay(200).start();
-        tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
-        tweenGlasses2.repeat(1);
-        tweenGlasses2.yoyo(true);
+            var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
+                x: 0.6,
+                y: 1.2,
+                z: 0
+            }, 500).delay(200).start();
+            tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
+            tweenGlasses2.repeat(1);
+            tweenGlasses2.yoyo(true);
 
+        }
+
+    }if(room =="bedroom"){
+        console.log("To Implement");
     }
+
 
 
     // add tweenHEAD
@@ -157,7 +161,7 @@ function dabdanceanimation(robotSkeleton, glasses) {
 
 }
 
-function affermativeanimation(robotSkeleton,glasses) {
+function affermativeanimation(robotSkeleton,glasses,room) {
     var mainB = robotSkeleton.bones;
     var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
     var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
@@ -169,30 +173,36 @@ function affermativeanimation(robotSkeleton,glasses) {
     head.rotation.y = -0.031;
     head.rotation.z = 0.055;
 
-    if( getCookie('glasses') == 'yes'){
-        console.log("glasses ACTIVE IN affermative ANIMATION!")
+    if(room =='garden'){
 
-        var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
-            x: 0.6,
-            y: 1.2,
-            z: 0
-        }, 500).delay(200).start();
-        tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
-        tweenGlasses.repeat(1);
-        tweenGlasses.yoyo(true);
+    }if (room == "kitchen"){
+        if( getCookie('glasses') == 'yes'){
+            console.log("glasses ACTIVE IN affermative ANIMATION!")
 
-        var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
-            x: 0.6,
-            y: 1.2,
-            z: 0
-        }, 500).delay(200).start();
-        tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
-        tweenGlasses2.repeat(1);
-        tweenGlasses2.yoyo(true);
+            var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+                x: 0.6,
+                y: 1.2,
+                z: 0
+            }, 500).delay(200).start();
+            tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+            tweenGlasses.repeat(1);
+            tweenGlasses.yoyo(true);
 
+            var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
+                x: 0.6,
+                y: 1.2,
+                z: 0
+            }, 500).delay(200).start();
+            tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
+            tweenGlasses2.repeat(1);
+            tweenGlasses2.yoyo(true);
+        }
+
+    }if(room =="bedroom"){
+        console.log("To Implement");
     }
 
-    // add tweenHEAD
+        // add tweenHEAD
     var tweenHEAD = new TWEEN.Tween(head.rotation).to({
         x: 0.9,
         y: -0.031,
@@ -248,8 +258,6 @@ function helloanimation(robotSkeleton,glasses) {
     var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
     var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
     var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
-    var legL = mainB[0].children[1].children[0];
-    var legR = mainB[0].children[1].children[1];
 
     if( getCookie('glasses') == 'yes'){
         console.log("glasses ACTIVE IN hello ANIMATION!")
