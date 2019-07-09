@@ -192,10 +192,6 @@ var directionalLight = new THREE.DirectionalLight( 0xffffff );
 directionalLight.position.set( 0, 1, 1 ).normalize();
 scene.add( directionalLight );
 
-var axesHelper = new THREE.AxesHelper( 30 );
-scene.add( axesHelper );
-hier= new THREE.Group(); //hierarchical model
-
 var loader = new THREE.GLTFLoader();
 
 // Load a glTF resource
@@ -385,6 +381,29 @@ for (var i = 0; i < collidableBoxes.length ; i++ ){
 }
 
 
+/*
+Listeners for extra animation
+*/
+document.getElementById("hello").onclick = function(e){
+    e.stopPropagation();
+    clicking=true;
+    console.log("animation hello executing");
+    helloanimation(robotSkeleton);
+};
+
+document.getElementById("dabdance").onclick = function(e){
+    e.stopPropagation();
+    clicking=true;
+    console.log("animation dabdance executing");
+    dabdanceanimation(robotSkeleton, glasses);
+};
+
+document.getElementById("affermative_movement").onclick = function(e){
+    e.stopPropagation();
+    clicking=true;
+    console.log("animation affermative movement executing");
+    affermativeanimation(robotSkeleton,glasses);
+};
 
 /**
 RAYCASTER
@@ -412,41 +431,17 @@ function onMouseClick( event ) {
     if(modelChar!= null){ //animate
 
         if ( ! isNaN( invisibleBox.position.angleTo(point) ) ){
-            //hier.rotation.z += hier.position.angleTo(point)
-            console.log("-------------------------------NEW CLICK-----------------------------------------")
-            console.log("DEBUG STUFF, TO DELETE");
-            console.log("current robotLookingAt:");
-            console.log(robotLookingAt);
 
             //Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
-
             var newLookingAt = new THREE.Vector3( );
-
             newLookingAt = newLookingAt.subVectors( point, invisibleBox.position ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
-            console.log("newLookingAt");
-            console.log(newLookingAt);
             //CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
-
             var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
-            console.log("angleOfRotation");
-            console.log(angleOfRotation);
-
-
             //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
-
             invisibleBox.rotation.z += angleOfRotation;
-
-            console.log("invisibleBox.rotation");
-            console.log(invisibleBox.rotation);
-
             //update robotLookingAt
             var axis = new THREE.Vector3( 0, 0, 1 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
-
             robotLookingAt.applyAxisAngle( axis, angleOfRotation );
-            
-
-            console.log("ipdated robotLookingAt");
-            console.log(robotLookingAt);
 
         }
 
@@ -458,7 +453,9 @@ function onMouseClick( event ) {
         var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
         var legL = mainB[0].children[1].children[0];
         var legR = mainB[0].children[1].children[1];
+
         tween = new TWEEN.Tween(rootInit).to(rootFinal, 1500);
+
         tween.onUpdate(function(){
 
             collided = checkCollision( invisibleBox, collidableBoxes);

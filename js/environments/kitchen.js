@@ -477,11 +477,9 @@ function kitchen(){
     }
 
 
-
-    /**
-    RAYCASTER
+    /*
+    Listeners for extra animation
     */
-
     document.getElementById("hello").onclick = function(e){
       e.stopPropagation();
       clicking=true;
@@ -503,7 +501,9 @@ function kitchen(){
       affermativeanimation(robotSkeleton,glasses);
     };
 
-
+    /**
+    RAYCASTER
+    */
 
     function onMouseClick( event ) {
 
