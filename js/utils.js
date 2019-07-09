@@ -243,7 +243,7 @@ function affermativeanimation(robotSkeleton,glasses) {
 
 
 
-function helloanimation(robotSkeleton) {
+function helloanimation(robotSkeleton,glasses) {
     var mainB = robotSkeleton.bones;
     var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
     var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
@@ -265,10 +265,6 @@ function helloanimation(robotSkeleton) {
 
 
 
-    }
-
-    if( getCookie('hat') == 'yes'){
-        console.log("hat ACTIVE IN hello ANIMATION!")
     }
 
     // add tweenHEAD

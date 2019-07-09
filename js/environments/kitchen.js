@@ -484,7 +484,7 @@ function kitchen(){
       e.stopPropagation();
       clicking=true;
       console.log("animation hello executing");
-      helloanimation(robotSkeleton);
+      helloanimation(robotSkeleton,glasses);
     };
 
     document.getElementById("dabdance").onclick = function(e){

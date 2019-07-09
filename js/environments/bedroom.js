@@ -345,7 +345,7 @@ loaderChar.load(
                     clearInterval(checkGlasses);
                     glassesAreLoaded = true;
                     var box = new THREE.Box3().setFromObject( modelChar );
-                    glasses.scale.set(0.1,0.15,0.15);
+                    glasses.scale.set(0.11,0.15,0.15);
                     //glasses.rotation.x += Math.PI/2;
                     glasses.position.z += box.getSize().z/2 -0.7;
                     glasses.position.y = box.getSize().y + 1 ;
@@ -388,7 +388,7 @@ document.getElementById("hello").onclick = function(e){
     e.stopPropagation();
     clicking=true;
     console.log("animation hello executing");
-    helloanimation(robotSkeleton);
+    helloanimation(robotSkeleton,glasses);
 };
 
 document.getElementById("dabdance").onclick = function(e){
