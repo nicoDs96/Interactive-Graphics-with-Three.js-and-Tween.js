@@ -27,11 +27,11 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
   renderer.setSize(window.innerWidth, window.innerHeight);
   if(document.querySelector('canvas') != undefined ){
       document.body.replaceChild( renderer.domElement, document.getElementsByTagName('canvas')[0] );
-
+      document.querySelector('canvas').setAttribute('hidden','true');
   }
   else{
       document.body.appendChild( renderer.domElement );
-
+      document.querySelector('canvas').setAttribute('hidden','true');
   }
 
   //Light
@@ -274,21 +274,21 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
        e.stopPropagation();
        clicking=true;
        console.log("animation hello executing");
-       helloanimation(robotSkeleton,glasses,"bedroom");
+       helloanimation(robotSkeleton,glasses,"garden");
    };
 
    document.getElementById("dabdance").onclick = function(e){
        e.stopPropagation();
        clicking=true;
        console.log("animation dabdance executing");
-       dabdanceanimation(robotSkeleton, glasses,"bedroom");
+       dabdanceanimation(robotSkeleton, glasses,"garden");
    };
 
    document.getElementById("affermative_movement").onclick = function(e){
        e.stopPropagation();
        clicking=true;
        console.log("animation affermative movement executing");
-       affermativeanimation(robotSkeleton,glasses,"bedroom");
+       affermativeanimation(robotSkeleton,glasses,"garden");
    };
 
 
