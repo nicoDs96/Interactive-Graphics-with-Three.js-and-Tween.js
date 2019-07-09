@@ -86,12 +86,13 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
   });
   model.position.set(0,-0.2,0);
   scene.add(model);
+  loadedV[0] = true;
   },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: fountain' );
   if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
       if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          loadedV[0] = true;
+
       }
   }else{
       alert('the loading utility is currently down, please wait the models load before starting to play.');
@@ -121,12 +122,13 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
   });
   model.position.set(-10,0,10);
   scene.add(model);
+  loadedV[1] = true;
   },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: gazebo' );
   if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
       if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          loadedV[1] = true;
+
       }
   }else{
       alert('the loading utility is currently down, please wait the models load before starting to play.');
@@ -157,12 +159,13 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
     });
     model.position.set(-9,0,-7);
     scene.add(model);
+    loadedV[2] = true;
     },
   function ( xhr ) {
 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: chair' );
   if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
       if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          loadedV[2] = true;
+
       }
   }else{
       alert('the loading utility is currently down, please wait the models load before starting to play.');
@@ -184,12 +187,13 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
     });
     model.position.set(10,0,10);
     scene.add(model);
+    loadedV[3] = true;
     },
   function ( xhr ) {
   console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: tree' );
   if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
       if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-          loadedV[3] = true;
+
       }
   }else{
       alert('the loading utility is currently down, please wait the models load before starting to play.');
@@ -231,6 +235,7 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
      }});
      modelChar.position.set(0,-3,0);
      scene.add( modelChar );
+     loadedV[4] = true;
      robotSkeleton = new THREE.Skeleton( rootBone );
      var size = new THREE.Box3().setFromObject(modelChar).getSize();
      invisibleBox = new THREE.Mesh(new THREE.CubeGeometry(size.x/2-0.8,size.y,size.z-0.1),
@@ -258,7 +263,7 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: robot' );
    if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
        if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
-           loadedV[4] = true;
+
        }
    }else{
        alert('the loading utility is currently down, please wait the models load before starting to play.');
