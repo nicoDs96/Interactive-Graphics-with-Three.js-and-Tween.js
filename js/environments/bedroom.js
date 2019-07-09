@@ -258,6 +258,7 @@ loader.load(
         cube.scale.x = 0.7;
         cube.scale.y = 0.55;
         scene.add(cube);
+        loaded = true;
 
     },
     // called while loading is progressing (onProgress)
@@ -265,8 +266,7 @@ loader.load(
         console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
         if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){ //if they are all number variables
             if(  (xhr.loaded / xhr.total) > 0.90  ){
-                console.log('room scene loaded');
-                loaded = true;
+                console.log('room scene almost loaded...');
             }
         }else{ //loading utily non working
             alert('the loading utility is currently down, please wait the models load before starting to play.');
@@ -361,7 +361,7 @@ loaderChar.load(
     },
     // called when loading has errors
     function ( error ) {
-        console.log( 'An error happened' );
+        console.log( 'An error happened:' );
         console.error(error);
     }
 );
