@@ -9,7 +9,7 @@ loadedV[2] = false;
 loadedV[3] = false;
 loadedV[4] = false;
 loaded = false;
-
+var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
 
 
   //Scene
@@ -269,6 +269,29 @@ loaded = false;
       console.log(error);
    });
 
+   //Extra animations
+   document.getElementById("hello").onclick = function(e){
+       e.stopPropagation();
+       clicking=true;
+       console.log("animation hello executing");
+       helloanimation(robotSkeleton,glasses,"bedroom");
+   };
+
+   document.getElementById("dabdance").onclick = function(e){
+       e.stopPropagation();
+       clicking=true;
+       console.log("animation dabdance executing");
+       dabdanceanimation(robotSkeleton, glasses,"bedroom");
+   };
+
+   document.getElementById("affermative_movement").onclick = function(e){
+       e.stopPropagation();
+       clicking=true;
+       console.log("animation affermative movement executing");
+       affermativeanimation(robotSkeleton,glasses,"bedroom");
+   };
+
+
   //Raycaster - Robot movement
   var alerted = false;
   var raycaster = new THREE.Raycaster();
@@ -285,6 +308,20 @@ loaded = false;
           var intersects = raycaster.intersectObjects( scene.children );
           var point = intersects[intersects.length -1].point;
           if(modelChar != null){
+            if ( ! isNaN( invisibleBox.position.angleTo(point) ) ){
+
+                //Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
+                var newLookingAt = new THREE.Vector3( );
+                newLookingAt = newLookingAt.subVectors( point, invisibleBox.position ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
+                //CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
+                var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
+                //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
+                invisibleBox.rotation.y += angleOfRotation;
+                //update robotLookingAt
+                var axis = new THREE.Vector3( 0, 1, 0 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
+                robotLookingAt.applyAxisAngle( axis, angleOfRotation );
+
+            }
               var mainB = robotSkeleton.bones;
               var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
               var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
