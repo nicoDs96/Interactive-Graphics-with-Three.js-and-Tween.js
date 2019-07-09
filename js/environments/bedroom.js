@@ -266,8 +266,7 @@ loader.load(
         console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
         if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){ //if they are all number variables
             if(  (xhr.loaded / xhr.total) > 0.90  ){
-                console.log('room scene loaded');
-
+                console.log('room scene almost loaded...');
             }
         }else{ //loading utily non working
             alert('the loading utility is currently down, please wait the models load before starting to play.');
