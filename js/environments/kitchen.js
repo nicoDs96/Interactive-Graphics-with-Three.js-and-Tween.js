@@ -278,7 +278,7 @@ function kitchen(){
             if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
                 if(  (xhr.loaded / xhr.total) > 0.90  ){
                     console.log('room scene loaded');
-                    
+
                 }
             }else{
                 alert('the loading utility is currently down, please wait the models load before starting to play.');
@@ -541,11 +541,19 @@ function kitchen(){
 
         if(modelChar!= null){ //animate
 
-          rotation_funct(point, invisibleBox);
+            if ( ! isNaN( invisibleBox.position.angleTo(point) ) ){
 
-          /*  if ( ! isNaN( hier.position.angleTo(point) ) ){
-                hier.rotation.z += hier.position.angleTo(point);
-            }*/
+                //Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
+                var newLookingAt = new THREE.Vector3( );
+                newLookingAt = newLookingAt.subVectors( point, invisibleBox.position ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
+                //CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
+                var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
+                //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
+                invisibleBox.rotation.z += angleOfRotation;
+                //update robotLookingAt
+                var axis = new THREE.Vector3( 0, 0, 1 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
+                robotLookingAt.applyAxisAngle( axis, angleOfRotation );
+            }
 
             var rootInit = { x : invisibleBox.position.x , y : invisibleBox.position.y };
             var rootFinal = { x : point.x , y : point.y };
