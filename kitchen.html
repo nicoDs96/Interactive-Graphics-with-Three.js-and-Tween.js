@@ -34,21 +34,19 @@
 
 	</head>
 	<body>
-		<div class="btn-group" style="position: absolute;">
-			<button type="button" class="btn btn-dark" id="kitchen">Kitchen</button>
-			<button type="button" class="btn btn-dark" id="garden">Garden</button>
-			<button type="button" class="btn btn-dark" id="bedroom">Bedroom</button>
-			<button type="button" class="btn btn-dark" id="exit">Exit</button>
+		<div id="comands">
+			<div class="btn-group" style="position: absolute;">
+				<button type="button" class="btn btn-dark" id="kitchen">Kitchen</button>
+				<button type="button" class="btn btn-dark" id="garden">Garden</button>
+				<button type="button" class="btn btn-dark" id="bedroom">Bedroom</button>
+				<button type="button" class="btn btn-dark" id="exit">Exit</button>
+			</div>
+			<div class="btn-group float-right " role="group">
+				<button type="button" class="btn btn-light" id="hello">Hello!</button>
+				<button type="button" class="btn btn-light" id="dabdance">Dab Dance</button>
+				<button type="button" class="btn btn-light" id="affermative_movement">Affermative</button>
+			</div>
 		</div>
-
-
-					 <div class="btn-group float-right " role="group">
-						 <button type="button" class="btn btn-light" id="hello">Hello!</button>
-						 <button type="button" class="btn btn-light" id="dabdance">Dab Dance</button>
-						 <button type="button" class="btn btn-light" id="affermative_movement">Affermative</button>
-					 </div>
-
-
 
 		<table id='loading' style="position: absolute;height: 100%;width: 100%;">
 			<tbody>
@@ -64,7 +62,7 @@
 		var scene = new THREE.Scene();
 	  var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 1000 );
 	  var renderer = new THREE.WebGLRenderer({ antialias: true });
-
+	    document.getElementById('comands').setAttribute('hidden','true');
 		var loaded = false;
 		setUpListeners();
         kitchen();
@@ -73,6 +71,7 @@
 		   if(loaded){
 			   document.querySelector('canvas').removeAttribute("hidden");
 			   document.getElementById('loading').setAttribute('hidden','true');
+			   document.getElementById('comands').removeAttribute("hidden");
 		   }
 		}, 1000);
 		</script>
