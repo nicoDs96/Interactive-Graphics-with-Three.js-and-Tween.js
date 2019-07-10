@@ -261,15 +261,16 @@ function kitchen(){
             cube.scale.x = 0.7;
             cube.scale.y = 0.55;
             scene.add(cube);
+            loaded = true;
 
         },
         // called while loading is progressing (onProgress)
         function ( xhr ) {
             console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
             if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
-                if( !(getCookie('hat') == 'yes') && (xhr.loaded / xhr.total) > 0.90  ){
+                if(  (xhr.loaded / xhr.total) > 0.90  ){
                     console.log('room scene loaded');
-                    loaded = true;
+                    
                 }
             }else{
                 alert('the loading utility is currently down, please wait the models load before starting to play.');
