@@ -6,7 +6,7 @@ function kitchen(){
     var glasses = null;
     var rootBone = [];
     var robotSkeleton;
-    var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
+    var robotLookingAt = new THREE.Vector3( 0, -1, 0 ).normalize();
     var clicking = false;
 
 //collision boxes
@@ -544,11 +544,12 @@ function kitchen(){
                 //CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
                 var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
                 //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
-                invisibleBox.rotation.y += angleOfRotation;
+                invisibleBox.rotation.z += angleOfRotation;
                 //update robotLookingAt
-                var axis = new THREE.Vector3( 0, 1, 0 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
+                var axis = new THREE.Vector3( 0, 0, 1 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
                 robotLookingAt.applyAxisAngle( axis, angleOfRotation );
-                }
+
+            }
 
             var rootInit = { x : invisibleBox.position.x , y : invisibleBox.position.y };
             var rootFinal = { x : point.x , y : point.y };
