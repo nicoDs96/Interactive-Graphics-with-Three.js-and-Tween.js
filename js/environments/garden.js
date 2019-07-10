@@ -2,7 +2,6 @@ var camera;
 var renderer;
 function garden(){
 
-document.getElementById("loading").setAttribute("hidden","true");
 var loadedV = [];
 loadedV[0] = false;
 loadedV[1] = false;
