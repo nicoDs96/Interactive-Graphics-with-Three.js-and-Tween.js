@@ -59,8 +59,9 @@
 
 		var loaded = false;
 		setUpListeners();
-    garden();
-
+		document.getElementById('loading').removeAttribute('hidden');
+    		garden();
+		
 		setInterval(function(){
 		   if(loaded){
 			   document.querySelector('canvas').removeAttribute("hidden");
