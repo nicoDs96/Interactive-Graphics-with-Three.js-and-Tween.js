@@ -1,4 +1,5 @@
-
+var camera;
+var renderer;
 function garden(){
 
 document.getElementById("loading").setAttribute("hidden","true");
@@ -17,13 +18,13 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
   scene.background = new THREE.Color( 0xffffff );
 
   //Camera
-  var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 1000 );
+   camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.set(17,14,-12);
   camera.up = new THREE.Vector3(0,1,0);
   camera.lookAt(new THREE.Vector3(0,0,0));
 
   //Renderer
-  var renderer = new THREE.WebGLRenderer({ antialias: true });
+   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   if(document.querySelector('canvas') != undefined ){
       document.body.replaceChild( renderer.domElement, document.getElementsByTagName('canvas')[0] );
