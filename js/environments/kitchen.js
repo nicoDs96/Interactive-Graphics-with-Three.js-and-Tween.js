@@ -4,14 +4,9 @@ function kitchen(){
     var model,modelChar, box, checkHat, checkGlasses,hier;
     var hat = null;
     var glasses = null;
-    var hatIsLoaded = false;
-    var custFlag =false
-    var glassesAreLoaded = false;
-    var modelMeshes =[];
     var rootBone = [];
     var robotSkeleton;
-
-    var firstClick = true;
+    var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
     var clicking = false;
 
 //collision boxes
@@ -549,11 +544,11 @@ function kitchen(){
                 //CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
                 var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
                 //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
-                invisibleBox.rotation.z += angleOfRotation;
+                invisibleBox.rotation.y += angleOfRotation;
                 //update robotLookingAt
-                var axis = new THREE.Vector3( 0, 0, 1 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
+                var axis = new THREE.Vector3( 0, 1, 0 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
                 robotLookingAt.applyAxisAngle( axis, angleOfRotation );
-            }
+                }
 
             var rootInit = { x : invisibleBox.position.x , y : invisibleBox.position.y };
             var rootFinal = { x : point.x , y : point.y };
@@ -702,47 +697,6 @@ function kitchen(){
       tweenLEGL1.start();
       tweenARMR1.start();
       tweenARML1.start();
-    }
-
-
-    function rotation_funct(point, invisibleBox, ) {
-      /*
-
-   Definire il vettore nella direzione in cui guarda il robot
-
- */
- var robotLookingAt = new THREE.Vector3( 0, 1, 0 ).normalize();
-
-
-     /*
-
-   Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
-
- */
-
- var newLookingAt = robotLookingAt;
-
- newLookingAt.subVectors( point, invisibleBox.position ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
-
-    /*
-
-  CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
-
- */
-
- var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
-
- /*
-
-  RUOTARE PERSONAGGIO E VETTORE robotLookingAt
-
- */
- invisibleBox.rotation.y += angleOfRotation;
-
- //update robotLookingAt
- var axis = new THREE.Vector3( 0, 1, 0 ); //axis deve essere l'asse intorno cui ruotare lookat (l'asse che va verso l'alto)
-
- robotLookingAt.applyAxisAngle( axis, angleOfRotation );
     }
 
     function animate() {
