@@ -577,35 +577,6 @@ function kitchen(){
                     invisibleBox.position.y = rootInit.y;
                 }
             });
-            tween.onComplete(function() {
-                tweenHEAD1.stop();
-                tweenLEGR1.stop();
-                tweenLEGL1.stop();
-                tweenARMR1.stop();
-                tweenARML1.stop();
-                tweenHEAD2.stop();
-                tweenLEGR2.stop();
-                tweenLEGL2.stop();
-                tweenARMR2.stop();
-                tweenARML2.stop();
-                //-----------------------------
-                legL.rotation.x=2.74;
-                legL.rotation.y=-0.15;
-                legL.rotation.z=-0.07;
-                legR.rotation.x=2.73;
-                legR.rotation.y=0.25;
-                legR.rotation.z=0.11;
-                armL.rotation.x=-0.10;
-                armL.rotation.y=0;
-                armL.rotation.z=-2.71;
-                armR.rotation.x=-0.10;
-                armR.rotation.y=-6.59;
-                armR.rotation.z=2.68;
-                head.rotation.x=-0.07;
-                head.rotation.y=-0.16;
-                head.rotation.z=0;
-                //----------------------------
-            });
 
 
             walkingAnimation(robotSkeleton);
@@ -623,7 +594,35 @@ function kitchen(){
       var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
       var legL = mainB[0].children[1].children[0];
       var legR = mainB[0].children[1].children[1];
-
+      tween.onComplete(function() {
+          tweenHEAD1.stop();
+          tweenLEGR1.stop();
+          tweenLEGL1.stop();
+          tweenARMR1.stop();
+          tweenARML1.stop();
+          tweenHEAD2.stop();
+          tweenLEGR2.stop();
+          tweenLEGL2.stop();
+          tweenARMR2.stop();
+          tweenARML2.stop();
+          //-----------------------------
+          legL.rotation.x=2.74;
+          legL.rotation.y=-0.15;
+          legL.rotation.z=-0.07;
+          legR.rotation.x=2.73;
+          legR.rotation.y=0.25;
+          legR.rotation.z=0.11;
+          armL.rotation.x=-0.10;
+          armL.rotation.y=0;
+          armL.rotation.z=-2.71;
+          armR.rotation.x=-0.10;
+          armR.rotation.y=-6.59;
+          armR.rotation.z=2.68;
+          head.rotation.x=-0.07;
+          head.rotation.y=-0.16;
+          head.rotation.z=0;
+          //----------------------------
+      });
       tween.start();
       var tweenLEGL1 = new TWEEN.Tween(legL.rotation).to({
           x: 1,
