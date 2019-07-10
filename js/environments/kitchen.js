@@ -166,6 +166,14 @@ function kitchen(){
 
     var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    if(document.querySelector('canvas') != undefined ){
+    document.body.replaceChild( renderer.domElement, document.getElementsByTagName('canvas')[0] );
+    document.querySelector('canvas').setAttribute('hidden','true');
+    }
+    else{
+    document.body.appendChild( renderer.domElement );
+    document.querySelector('canvas').setAttribute('hidden','true');
+    }
 
     var controls = new THREE.OrbitControls( camera, renderer.domElement );
     controls.enableZoom = true;
