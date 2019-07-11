@@ -12,6 +12,8 @@ loaded = false;
 var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
 var clicking = false;
 
+var checkWizardHat;
+var wizardHat = null;
 
   //Scene
   var scene = new THREE.Scene();
@@ -266,7 +268,9 @@ var clicking = false;
          wizardHat = drawWizardHat();
          checkWizardHat = setInterval(function(){
              if(wizardHat == null){
+                 //console.log('glasses null');
              }else{
+                 //console.log('glasses not null');
                  clearInterval(checkWizardHat);
                  wizardHatAreLoaded = true;
                  var box = new THREE.Box3().setFromObject( modelChar );
@@ -301,7 +305,7 @@ var clicking = false;
      e.stopPropagation();
      clicking=true;
      console.log("animation hello executing..");
-     helloanimation(robotSkeleton,glasses,"garden");
+     helloanimation(robotSkeleton,glasses,wizardHat,"garden");
        clicking=false; //reset the animation
    };
 
@@ -309,7 +313,7 @@ var clicking = false;
      e.stopPropagation();
      clicking=true;
      console.log("animation dabdance executing..");
-     dabdanceanimation(robotSkeleton, glasses,"garden");
+     dabdanceanimation(robotSkeleton, glasses,wizardHat,"garden");
      clicking=false; //reset the animation
    };
 
@@ -317,7 +321,7 @@ var clicking = false;
      e.stopPropagation();
      clicking=true;
      console.log("animation affermative movement executing..");
-     affermativeanimation(robotSkeleton,glasses,"garden");
+     affermativeanimation(robotSkeleton,glasses,wizardHat,"garden");
      clicking=false; //reset the animation
    };
 

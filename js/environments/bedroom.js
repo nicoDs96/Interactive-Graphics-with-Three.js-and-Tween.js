@@ -4,6 +4,8 @@ function bedroom(){
 
     var model,modelChar, box, checkGlasses;
     var glasses = null;
+    var checkWizardHat;
+    var wizardHat = null;
     var rootBone = [];
     var robotSkeleton;
     var invisibleBox;
@@ -355,6 +357,27 @@ loaderChar.load(
             }, 500);
         }
 
+        if( getCookie('wizard-hat') == 'yes'){
+          console.log("wizard-hat is TRUE");
+            wizardHat = drawWizardHat();
+            checkWizardHat = setInterval(function(){
+                if(wizardHat == null){
+                    //console.log('glasses null');
+                }else{
+                    //console.log('glasses not null');
+                    clearInterval(checkWizardHat);
+                    wizardHatAreLoaded = true;
+                    var box = new THREE.Box3().setFromObject( modelChar );
+                    wizardHat.scale.set(0.11,0.15,0.15);
+
+                    wizardHat.position.z += box.getSize().z/2 -0.5 ;
+                    wizardHat.position.y = box.getSize().y +1.3 ;
+
+                    modelChar.add(wizardHat);
+                }
+            }, 500);
+        }
+
     },
     // called while loading is progressing
     function ( xhr ) {
@@ -389,21 +412,21 @@ document.getElementById("hello").onclick = function(e){
     e.stopPropagation();
     clicking=true;
     console.log("animation hello executing");
-    helloanimation(robotSkeleton,glasses,"bedroom");
+    helloanimation(robotSkeleton,glasses,wizardHat,"bedroom");
 };
 
 document.getElementById("dabdance").onclick = function(e){
     e.stopPropagation();
     clicking=true;
     console.log("animation dabdance executing");
-    dabdanceanimation(robotSkeleton, glasses,"bedroom");
+    dabdanceanimation(robotSkeleton, glasses,wizardHat,"bedroom");
 };
 
 document.getElementById("affermative_movement").onclick = function(e){
     e.stopPropagation();
     clicking=true;
     console.log("animation affermative movement executing");
-    affermativeanimation(robotSkeleton,glasses,"bedroom");
+    affermativeanimation(robotSkeleton,glasses,wizardHat,"bedroom");
 };
 
 /**

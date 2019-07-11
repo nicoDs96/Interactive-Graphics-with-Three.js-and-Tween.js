@@ -60,7 +60,7 @@ function checkCollision(invisibleBox, boxList) {
 /*
 Animations
 */
-function dabdanceanimation(robotSkeleton, glasses, room) {
+function dabdanceanimation(robotSkeleton, glasses, wizardHat, room) {
   var mainB = robotSkeleton.bones;
   var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
   var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
@@ -88,6 +88,23 @@ function dabdanceanimation(robotSkeleton, glasses, room) {
 }
 
 if (getCookie('wizard-hat') == 'yes') {
+  var tweenWizardHat = new TWEEN.Tween(wizardHat.rotation).to({
+    x: 0.6,
+    y: 1.2,
+    z: 0
+  }, 500).delay(200).start();
+  tweenWizardHat.easing(TWEEN.Easing.Cubic.InOut);
+  tweenWizardHat.repeat(1);
+  tweenWizardHat.yoyo(true);
+
+var tweenWizardHat2 = new TWEEN.Tween(wizardHat.position).to({
+      x: 1.4
+}, 500).delay(200).start();
+tweenWizardHat2.easing(TWEEN.Easing.Cubic.InOut);
+tweenWizardHat2.repeat(1);
+tweenWizardHat2.yoyo(true);
+
+
 }
 
 
@@ -150,7 +167,7 @@ if (getCookie('wizard-hat') == 'yes') {
 
 }
 
-function affermativeanimation(robotSkeleton, glasses, room) {
+function affermativeanimation(robotSkeleton, glasses, wizardHat, room) {
   var mainB = robotSkeleton.bones;
   var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
   var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
@@ -188,12 +205,67 @@ function affermativeanimation(robotSkeleton, glasses, room) {
     }
 
     if (getCookie('wizard-hat') == 'yes') {
-    }
+      var tweenWizardHat = new TWEEN.Tween(wizardHat.rotation).to({
+        x: 0.9,
+        y: -0.031,
+        z: 0.055
+      }, 500).delay(200).start();
+      tweenWizardHat.easing(TWEEN.Easing.Cubic.InOut);
+      tweenWizardHat.repeat(1);
+      tweenWizardHat.yoyo(true);
+
+
+    var tweenWizardHat2 = new TWEEN.Tween(wizardHat.position).to({
+        y: 3
+    }, 500).delay(200).start();
+    tweenWizardHat2.easing(TWEEN.Easing.Cubic.InOut);
+    tweenWizardHat2.repeat(1);
+    tweenWizardHat2.yoyo(true);
+}
 
   }
 
   if (room == "bedroom") {
     console.log("To Implement");
+
+    if (getCookie('glasses') == 'yes') {
+      console.log("glasses ACTIVE IN affermative ANIMATION!")
+
+      var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+        x: 0.9,
+        y: -0.031,
+        z: 0.055
+      }, 500).delay(200).start();
+      tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+      tweenGlasses.repeat(1);
+      tweenGlasses.yoyo(true);
+
+      var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
+        y: 2
+      }, 500).delay(200).start();
+      tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
+      tweenGlasses2.repeat(1);
+      tweenGlasses2.yoyo(true);
+    }
+
+    if (getCookie('wizard-hat') == 'yes') {
+      var tweenWizardHat = new TWEEN.Tween(wizardHat.rotation).to({
+        x: 0.9,
+        y: -0.031,
+        z: 0.055
+      }, 500).delay(200).start();
+      tweenWizardHat.easing(TWEEN.Easing.Cubic.InOut);
+      tweenWizardHat.repeat(1);
+      tweenWizardHat.yoyo(true);
+
+
+    var tweenWizardHat2 = new TWEEN.Tween(wizardHat.position).to({
+        y: 3
+    }, 500).delay(200).start();
+    tweenWizardHat2.easing(TWEEN.Easing.Cubic.InOut);
+    tweenWizardHat2.repeat(1);
+    tweenWizardHat2.yoyo(true);
+}
   }
 
   // add tweenHEAD
@@ -247,7 +319,7 @@ function affermativeanimation(robotSkeleton, glasses, room) {
 
 
 
-function helloanimation(robotSkeleton, glasses) {
+function helloanimation(robotSkeleton, glasses, wizardHat) {
   var mainB = robotSkeleton.bones;
   var armL = mainB[0].children[1].children[2].children[0].children[0].children[1];
   var armR = mainB[0].children[1].children[2].children[0].children[0].children[2];
@@ -265,11 +337,17 @@ function helloanimation(robotSkeleton, glasses) {
     tweenGlasses.repeat(1);
     tweenGlasses.yoyo(true);
 
-
-
   }
 
   if (getCookie('wizard-hat') == 'yes') {
+    var tweenWizardHat = new TWEEN.Tween(wizardHat.rotation).to({
+      x: 0,
+      y: 0,
+      z: 0
+    }, 500).delay(200).start();
+    tweenWizardHat.easing(TWEEN.Easing.Cubic.InOut);
+    tweenWizardHat.repeat(1);
+    tweenWizardHat.yoyo(true);
   }
 
   // add tweenHEAD

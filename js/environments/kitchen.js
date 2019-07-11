@@ -11,7 +11,6 @@ function kitchen(){
     var model,modelChar, box, checkHat, checkGlasses,hier;
     var checkWizardHat;
     var wizardHat = null;
-    var hat = null;
     var glasses = null;
     var rootBone = [];
     var robotSkeleton;
@@ -90,17 +89,6 @@ function kitchen(){
             } )
         ),
         position : {x:-28,y:6,z:0},
-        scale : {x:5,y:5,z:5}
-    }
-    TABLE_BOX = {
-        mesh: new THREE.Mesh(
-            new THREE.CubeGeometry( 2.4, 3.3, 3.6 ),
-            new THREE.MeshStandardMaterial( {
-                opacity: 0.0,
-                transparent: true
-            } )
-        ),
-        position : {x:-41,y:-25,z:0},
         scale : {x:5,y:5,z:5}
     }
     WALL_1 = {
@@ -430,7 +418,7 @@ function kitchen(){
       e.stopPropagation();
       clicking=true;
       console.log("animation hello executing..");
-      helloanimation(robotSkeleton,glasses,"kitchen");
+      helloanimation(robotSkeleton,glasses,wizardHat);
         clicking=false; //reset the animation
     };
 
@@ -438,7 +426,7 @@ function kitchen(){
       e.stopPropagation();
       clicking=true;
       console.log("animation dabdance executing..");
-      dabdanceanimation(robotSkeleton, glasses,"kitchen");
+      dabdanceanimation(robotSkeleton,glasses,wizardHat,"kitchen");
       clicking=false; //reset the animation
     };
 
@@ -446,7 +434,7 @@ function kitchen(){
       e.stopPropagation();
       clicking=true;
       console.log("animation affermative movement executing..");
-      affermativeanimation(robotSkeleton,glasses,"kitchen");
+      affermativeanimation(robotSkeleton,glasses,wizardHat,"kitchen");
       clicking=false; //reset the animation
     };
 
