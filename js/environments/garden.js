@@ -436,9 +436,10 @@ var wizardHat = null;
                     var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
                     var collisionResults = ray.intersectObjects( collidableMeshList );
                     if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){
-                      window.location.replace("index.html");
+                        console.log("Game Over");
+                     window.location.replace("gameover.html");
                       if(!alerted){
-                      alert("Game Over\nThe Robot Collided in garden");
+                      //alert("Game Over\nThe Robot Collided in garden");
                       alerted = true;
                     }
                     }
