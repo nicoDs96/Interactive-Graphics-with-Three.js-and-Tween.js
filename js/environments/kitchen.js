@@ -160,7 +160,7 @@ function kitchen(){
             collidableBoxes.push( WALL_3 );
             collidableBoxes.push( WALL_4 );
 
-    scene = new THREE.Scene();
+    var scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff );
 
     camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );

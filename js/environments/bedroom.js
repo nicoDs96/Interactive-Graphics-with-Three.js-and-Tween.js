@@ -128,7 +128,7 @@ function bedroom(){
     collidableBoxes.push( GYM_SPH_BOX );
 
 
-    scene = new THREE.Scene();
+    var scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff );
 
     /*
