@@ -436,10 +436,10 @@ function onMouseClick( event ) {
             //Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
             var newLookingAt = new THREE.Vector2( );
             newLookingAt = newLookingAt.subVectors(
-                new Vector2(point.x,point.y),
-                new Vector2(invisibleBox.position.x,invisibleBox.position.y)
+                new THREE.Vector2(point.x,point.y),
+                new THREE.Vector2(invisibleBox.position.x,invisibleBox.position.y)
             ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
-            
+
             //CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
             var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
             //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
