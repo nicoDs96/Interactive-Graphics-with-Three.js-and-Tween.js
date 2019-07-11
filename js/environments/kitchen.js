@@ -3,6 +3,9 @@
  * @description: environment Kitchen.
  *
  */
+ var camera;
+ var renderer;
+
 function kitchen(){
 
     var model,modelChar, box, checkHat, checkGlasses,hier;
@@ -160,12 +163,12 @@ function kitchen(){
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff );
 
-    var camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
     camera.position.set(20,-25,30);
     camera.up = new THREE.Vector3(0,0,1);
     camera.lookAt(new THREE.Vector3(0,0,20));
 
-    var renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     if(document.querySelector('canvas') != undefined ){
     document.body.replaceChild( renderer.domElement, document.getElementsByTagName('canvas')[0] );
