@@ -456,10 +456,6 @@ function kitchen(){
 
       if(clicking==false) {
 
-        // calculate mouse position in normalized device coordinates
-        // (-1 to +1) for both components
-
-      //AL PRIMO CLICK DI MOUSE SUL BOTTONE VA FUORI SCENA E COLLIDE IL PERSONAGGIO!!
 
         mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
@@ -497,7 +493,9 @@ function kitchen(){
             var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
             var legL = mainB[0].children[1].children[0];
             var legR = mainB[0].children[1].children[1];
+
             tween = new TWEEN.Tween(rootInit).to(rootFinal, 1500);
+
             tween.onUpdate(function(){
 
                 collided = checkCollision( invisibleBox, collidableBoxes);
@@ -506,19 +504,107 @@ function kitchen(){
                     tween.stop();
                     var func = setInterval(function(){
                         console.log('gameOver')
-                       alert("Game Over!\nThe Robot Collided in the Kitchen!");
-                       window.location.replace("index.html");
-                       clearInterval(func);
-                     }, 500);
+                        alert("Game Over\nThe Robot Collided in bedroom");
+                        window.location.replace("index.html");
+                        clearInterval(func);
+
+                    }, 500);
                 }else{
                     invisibleBox.position.x = rootInit.x;
                     invisibleBox.position.y = rootInit.y;
                 }
             });
 
+            tween.onComplete(function() {
+                tweenHEAD1.stop();
+                tweenLEGR1.stop();
+                tweenLEGL1.stop();
+                tweenARMR1.stop();
+                tweenARML1.stop();
+                tweenHEAD2.stop();
+                tweenLEGR2.stop();
+                tweenLEGL2.stop();
+                tweenARMR2.stop();
+                tweenARML2.stop();
+            });
 
-            walkingAnimation(robotSkeleton);
+            tween.start();
 
+            var tweenLEGL1 = new TWEEN.Tween(legL.rotation).to({
+                x: 1,
+                y: 0,
+                z: 0.2
+            }, 300);
+
+            var tweenLEGL2 = new TWEEN.Tween(legL.rotation).to({
+                x: 2.7,
+                y: -0.16,
+                z: -0.075
+            }, 300);
+
+            var tweenLEGR1 = new TWEEN.Tween(legR.rotation).to({
+                x: 4,
+                y: 0,
+                z: 0.2
+            }, 300);
+
+            var tweenLEGR2 = new TWEEN.Tween(legR.rotation).to({
+                x: 2.7,
+                y: 0.25,
+                z: 0.12
+            }, 300);
+
+            var tweenHEAD1 = new TWEEN.Tween(head.rotation).to({
+                x: -0.3,
+                y: -0.031,
+                z: 0.055
+            }, 300);
+
+            var tweenHEAD2 = new TWEEN.Tween(head.rotation).to({
+                x: -0.086,
+                y: -0.031,
+                z: 0.055
+            }, 300);
+
+            var tweenARML1 = new TWEEN.Tween(armL.rotation).to({
+                x: -0.9,
+                y: 0,
+                z: -2.7
+            }, 300);
+
+            var tweenARML2 = new TWEEN.Tween(armL.rotation).to({
+                x: -0.11,
+                y: 0,
+                z: -2.7
+            }, 300);
+
+            var tweenARMR1 = new TWEEN.Tween(armR.rotation).to({
+                x: -0.9,
+                y: 0,
+                z: 2.7
+            }, 300);
+
+            var tweenARMR2 = new TWEEN.Tween(armR.rotation).to({
+                x: -0.11,
+                y: 0,
+                z: 2.7
+            }, 300);
+
+            tweenHEAD1.chain(tweenHEAD2);
+            tweenLEGR1.chain(tweenLEGR2);
+            tweenLEGL1.chain(tweenLEGL2);
+            tweenARML1.chain(tweenARML2);
+            tweenARMR1.chain(tweenARMR2);
+            tweenHEAD2.chain(tweenHEAD1);
+            tweenLEGR2.chain(tweenLEGR1);
+            tweenLEGL2.chain(tweenLEGL1);
+            tweenARML2.chain(tweenARML1);
+            tweenARMR2.chain(tweenARMR1);
+            tweenHEAD1.start();
+            tweenLEGR1.start();
+            tweenLEGL1.start();
+            tweenARMR1.start();
+            tweenARML1.start();
         }
     }
   }
