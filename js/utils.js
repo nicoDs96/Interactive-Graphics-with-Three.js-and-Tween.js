@@ -75,7 +75,7 @@ function dabdanceanimation(robotSkeleton, glasses, room) {
 
     }if (room == "kitchen"){
         if( getCookie('glasses') == 'yes'){
-            console.log("glasses ACTIVE IN DAB ANIMATION!")
+            console.log("glasses in dab animation - kitchen environment")
 
             var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
                 x: 0.6,
@@ -156,7 +156,7 @@ function dabdanceanimation(robotSkeleton, glasses, room) {
     });
     tweenARMR.onComplete(function() {
         console.log("complete")
-        clicking=false; //reset the animation
+      //  clicking=false; //reset the animation
     });
 
 }
@@ -246,7 +246,7 @@ function affermativeanimation(robotSkeleton,glasses,room) {
     });
     tweenARMR.onComplete(function() {
         console.log("complete")
-        clicking=false; //reset the animation
+        //clicking=false; //reset the animation
     });
 
 }
@@ -319,7 +319,7 @@ function helloanimation(robotSkeleton,glasses) {
     });
     tweenARMR.onComplete(function() {
         console.log("complete")
-        clicking=false; //reset the animation
+      //  clicking=false; //reset the animation
     });
 
 }

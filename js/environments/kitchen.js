@@ -427,6 +427,7 @@ function kitchen(){
       clicking=true;
       console.log("animation hello executing");
       helloanimation(robotSkeleton,glasses,"kitchen");
+        clicking=false; //reset the animation
     };
 
     document.getElementById("dabdance").onclick = function(e){
@@ -434,6 +435,7 @@ function kitchen(){
       clicking=true;
       console.log("animation dabdance executing");
       dabdanceanimation(robotSkeleton, glasses,"kitchen");
+      clicking=false; //reset the animation
     };
 
     document.getElementById("affermative_movement").onclick = function(e){
@@ -441,6 +443,7 @@ function kitchen(){
       clicking=true;
       console.log("animation affermative movement executing");
       affermativeanimation(robotSkeleton,glasses,"kitchen");
+      clicking=false; //reset the animation
     };
 
     /**
@@ -448,9 +451,6 @@ function kitchen(){
     */
 
     function onMouseClick( event ) {
-
-
-
 
       console.log("debug click" + clicking);
 
