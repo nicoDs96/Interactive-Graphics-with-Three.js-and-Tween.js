@@ -277,7 +277,7 @@ var wizardHat = null;
                  wizardHat.scale.set(0.11,0.15,0.15);
 
                  wizardHat.position.z += box.getSize().z/2 ;
-                 wizardHat.position.y = box.getSize().y  ;
+                 wizardHat.position.y = box.getSize().y -0.5 ;
                  wizardHat.position.x += -0.1 ;
                  modelChar.add(wizardHat);
              }
