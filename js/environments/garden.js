@@ -214,11 +214,11 @@ var wizardHat = null;
   scene.add(boxModelTree);
 
   //Robot
-  var modelChar, box, checkHat, checkGlasses;
-  var hat = null;
+  var modelChar, box, checkWizardHat, checkGlasses;
+  var wizardHat = null;
   var glasses = null;
-  var hatIsLoaded = false;
   var glassesAreLoaded = false;
+  var wizardHatAreLoaded = false;
   var rootBone = [];
   var robotSkeleton;
   var invisibleBox;
@@ -256,8 +256,8 @@ var wizardHat = null;
         glassesAreLoaded = true;
         var box = new THREE.Box3().setFromObject( modelChar );
         glasses.scale.set(0.1,0.15,0.15);
-        glasses.position.x -= 0.1 ;
-        glasses.position.z -= box.getSize().z -4.5;
+        glasses.position.x -= 0.01 ;
+        glasses.position.z -= box.getSize().z -4.3;
         glasses.position.y += box.getSize().y -0.75 ;
         modelChar.add(glasses);
       }
