@@ -174,31 +174,33 @@ function affermativeanimation(robotSkeleton,glasses,room) {
     head.rotation.z = 0.055;
 
     if(room =='garden'){
+      console.log("To Implement");
+    }
 
-    }if (room == "kitchen"){
+    if (room == "kitchen"){
         if( getCookie('glasses') == 'yes'){
             console.log("glasses ACTIVE IN affermative ANIMATION!")
 
             var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
-                x: 0.6,
-                y: 1.2,
-                z: 0
+              x: 0.9,
+              y: -0.031,
+              z: 0.055
             }, 500).delay(200).start();
             tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
             tweenGlasses.repeat(1);
             tweenGlasses.yoyo(true);
 
             var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
-                x: 0.6,
-                y: 1.2,
-                z: 0
+                y: 2
             }, 500).delay(200).start();
             tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
             tweenGlasses2.repeat(1);
             tweenGlasses2.yoyo(true);
         }
 
-    }if(room =="bedroom"){
+    }
+
+    if(room =="bedroom"){
         console.log("To Implement");
     }
 
