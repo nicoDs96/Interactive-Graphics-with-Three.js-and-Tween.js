@@ -495,8 +495,8 @@ function kitchen(){
                     tween.stop();
                     var func = setInterval(function(){
                         console.log('gameOver')
-                        alert("Game Over\nThe Robot Collided in Kitchen");
-                        window.location.replace("index.html");
+                        //alert("Game Over\nThe Robot Collided in Kitchen");
+                         window.location.replace("gameover.html");
                         clearInterval(func);
 
                     }, 500);
