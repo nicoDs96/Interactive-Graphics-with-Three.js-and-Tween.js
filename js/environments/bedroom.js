@@ -435,7 +435,11 @@ function onMouseClick( event ) {
 
             //Definire il vettore nella direzione che va dal personaggio al punto da raggiungere
             var newLookingAt = new THREE.Vector3( );
-            newLookingAt = newLookingAt.subVectors( point, invisibleBox.position ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
+            var pointClone = point.clone();
+            pointClone.z = 0;
+            var posClone = invisibleBox.position.clone();
+            posClone.z = 0;
+            newLookingAt = newLookingAt.subVectors( pointClone, posClone ).normalize();  //direction from 2nd param to 1st param, namley from char to clicked point
             //CALCOLARE L'ANGOLO TRA LE DUE DIREZIONI
             var angleOfRotation = robotLookingAt.angleTo(newLookingAt);
             //RUOTARE PERSONAGGIO E VETTORE robotLookingAt
@@ -532,7 +536,7 @@ function onMouseClick( event ) {
                     }, DELAY_STOP_MOVEMENT).start();
                     finish_armR.easing(TWEEN.Easing.Cubic.InOut);
             }
-            
+
         });
 
         tween.start();
