@@ -212,11 +212,11 @@ var clicking = false;
   scene.add(boxModelTree);
 
   //Robot
-  var modelChar, box, checkHat, checkGlasses;
-  var hat = null;
+  var modelChar, box, checkWizardHat, checkGlasses;
+  var wizardHat = null;
   var glasses = null;
-  var hatIsLoaded = false;
   var glassesAreLoaded = false;
+  var wizardHatAreLoaded = false;
   var rootBone = [];
   var robotSkeleton;
   var invisibleBox;
@@ -254,12 +254,33 @@ var clicking = false;
         glassesAreLoaded = true;
         var box = new THREE.Box3().setFromObject( modelChar );
         glasses.scale.set(0.1,0.15,0.15);
-        glasses.position.x -= 0.1 ;
-        glasses.position.z -= box.getSize().z -4.5;
+        glasses.position.x -= 0.01 ;
+        glasses.position.z -= box.getSize().z -4.3;
         glasses.position.y += box.getSize().y -0.75 ;
         modelChar.add(glasses);
       }
-     }, 500);}},
+     }, 500);}
+
+     if( getCookie('wizard-hat') == 'yes'){
+       console.log("wizard-hat is TRUE");
+         wizardHat = drawWizardHat();
+         checkWizardHat = setInterval(function(){
+             if(wizardHat == null){
+             }else{
+                 clearInterval(checkWizardHat);
+                 wizardHatAreLoaded = true;
+                 var box = new THREE.Box3().setFromObject( modelChar );
+                 wizardHat.scale.set(0.11,0.15,0.15);
+
+                 wizardHat.position.z += box.getSize().z/2 -2.8;
+                 wizardHat.position.y = box.getSize().y -1 ;
+                 wizardHat.position.x += -0.1 ;
+                 modelChar.add(wizardHat);
+             }
+         }, 500);
+     }
+
+   },
    function ( xhr ) {
    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: robot' );
    if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
