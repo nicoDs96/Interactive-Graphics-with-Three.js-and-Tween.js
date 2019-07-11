@@ -56,8 +56,37 @@ function setUpMenuListeners(){
             hier.remove(glasses);
             document.getElementById("glasses").innerHTML = "Add Glasses";
         }
+          };
 
-    };
+        //WIZARD HAT
+      /*      document.getElementById("wizard-hat").onclick = function(){
+
+        if (document.getElementById("wizard-hat").innerHTML == "Add Magic Touch"){
+          console.log("in wizard-hat")
+            wizardHat = drawWizardHat();
+            checkWizardHat = setInterval(function(){
+                if(wizardHat == null){
+                    document.getElementById("wizard-hat").setAttribute("disabled", "true");
+                }else{
+
+                    document.getElementById("wizard-hat").innerHTML = "Remove Magic Touch";
+
+                    clearInterval(checkWizardHat);
+                    wizardHatAreLoaded = true;
+                    document.getElementById("wizard-hat").removeAttribute("disabled");
+                    var box = new THREE.Box3().setFromObject( model );
+                    wizardHat.scale.set(0.3,0.4,0.4);
+                    wizardHat.position.y += box.getSize().y * 5 / 12 ;
+                    wizardHat.position.z += box.getSize().z /2 + 0.2 ;
+                    hier.add(wizardHat);
+                }
+            }, 500);
+        }
+        else{ // remove wizard-hat
+            hier.remove(wizardHat);
+            document.getElementById("wizard-hat").innerHTML = "Add Magic Touch";
+        }
+      };*/
 
 
     document.getElementById("customize").onclick = function(){
@@ -70,6 +99,8 @@ function setUpMenuListeners(){
         }
     };
 
+
+
     document.getElementById("new").onclick = function(){
         //save the model customization
         document.cookie= "path=/;";
@@ -80,6 +111,14 @@ function setUpMenuListeners(){
         else{
             document.cookie = "glasses=yes;";
         }
+
+  /*      if(document.getElementById("wizard-hat").innerHTML == "Add Magic Touch"){
+            document.cookie = "wizard-hat=no;";
+        }
+        else{
+            document.cookie = "wizard-hat=yes;";
+        }*/
+
         console.log('customization parameters:');
         console.log(document.cookie);
         window.location.replace("bedroom.html");
