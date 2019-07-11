@@ -74,32 +74,53 @@ function dabdanceanimation(robotSkeleton, glasses, room) {
   }
 
   if (room == "kitchen") {
-    if (getCookie('glasses') == 'yes') {
-      console.log("glasses in dab animation - kitchen environment")
+      if (getCookie('glasses') == 'yes') {
+          console.log("glasses in dab animation - kitchen environment")
 
-      var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
-        x: 0.6,
-        y: 1.2,
-        z: 0
-      }, 500).delay(200).start();
-      tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
-      tweenGlasses.repeat(1);
-      tweenGlasses.yoyo(true);
+          var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+              x: 0.6,
+              y: 1.2,
+              z: 0
+          }, 500).delay(200).start();
+          tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+          tweenGlasses.repeat(1);
+          tweenGlasses.yoyo(true);
 
-//edit position
-var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
-  x: 1.4
-}, 500).delay(200).start();
-tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
-tweenGlasses2.repeat(1);
-tweenGlasses2.yoyo(true);
+          //edit position
+          var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
+              x: 1.4
+          }, 500).delay(200).start();
+          tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
+          tweenGlasses2.repeat(1);
+          tweenGlasses2.yoyo(true);
 
 
-    }
+      }
 
   }
   if (room == "bedroom") {
-    console.log("To Implement");
+      if (getCookie('glasses') == 'yes') {
+          console.log("glasses in dab animation - kitchen environment")
+
+          var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
+              x: 0.6,
+              y: 1.2,
+              z: 0
+          }, 500).delay(200).start();
+          tweenGlasses.easing(TWEEN.Easing.Cubic.InOut);
+          tweenGlasses.repeat(1);
+          tweenGlasses.yoyo(true);
+
+          //edit position
+          var tweenGlasses2 = new TWEEN.Tween(glasses.position).to({
+              x: 1.4
+          }, 500).delay(200).start();
+          tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
+          tweenGlasses2.repeat(1);
+          tweenGlasses2.yoyo(true);
+
+
+      }
   }
 
 
