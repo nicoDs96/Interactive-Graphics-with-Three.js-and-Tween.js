@@ -201,6 +201,7 @@ function kitchen(){
 
     hier= new THREE.Group(); //hierarchical model
 
+
     var loader = new THREE.GLTFLoader();
 
     // Load a glTF resource
@@ -294,32 +295,7 @@ function kitchen(){
         }
 ); //end loader.load()
 
-    //Kitchen
-    var loader = new THREE.GLTFLoader();
-    loader.load('models/kitchen/table/scene.gltf',
-  	function ( gltf ) {
-    var model = gltf.scene;
-    var modelMeshes = [];
-    model.traverse( function ( object ) {
-        if ( object.isMesh ){
-            object.castShadow = true;
-            object.geometry.scale(10,10,10);
-            object.geometry.rotateZ(-1.5708);
-            modelMeshes.push(new Physijs.BoxMesh(object.geometry,object.material,0));
-            modelMeshes[modelMeshes.length-1].position.set(-40,-25,0);
-            scene.add(modelMeshes[modelMeshes.length-1]);
-            modelMeshes[modelMeshes.length-1].addEventListener( 'collision', function( other_object, relative_velocity, relative_rotation, contact_normal ) {
-              alert("collision");
-            tween.stop();
-            });
-        }
-    })},
-    function ( xhr ) {
-  	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-  	},
-  	function ( error ) {
-    console.log( 'An error happened' );
-    });
+
 
 
     var loaderChar = new THREE.GLTFLoader();
