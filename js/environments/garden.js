@@ -269,9 +269,7 @@ var wizardHat = null;
          wizardHat = drawWizardHat();
          checkWizardHat = setInterval(function(){
              if(wizardHat == null){
-                 //console.log('glasses null');
-             }else{
-                 //console.log('glasses not null');
+             }else{  
                  clearInterval(checkWizardHat);
                  wizardHatAreLoaded = true;
                  var box = new THREE.Box3().setFromObject( modelChar );
