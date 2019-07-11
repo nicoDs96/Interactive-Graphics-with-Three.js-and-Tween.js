@@ -276,8 +276,8 @@ var wizardHat = null;
                  var box = new THREE.Box3().setFromObject( modelChar );
                  wizardHat.scale.set(0.11,0.15,0.15);
 
-                 wizardHat.position.z += box.getSize().z/2 -1;
-                 wizardHat.position.y = box.getSize().y -1 ;
+                 wizardHat.position.z += box.getSize().z/2 ;
+                 wizardHat.position.y = box.getSize().y  ;
                  wizardHat.position.x += -0.1 ;
                  modelChar.add(wizardHat);
              }
