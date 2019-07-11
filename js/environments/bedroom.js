@@ -1,5 +1,6 @@
 var camera;
 var renderer;
+var scene;
 function bedroom(){
 
     var model,modelChar, box, checkGlasses;
@@ -130,7 +131,7 @@ function bedroom(){
     collidableBoxes.push( GYM_SPH_BOX );
 
 
-    var scene = new THREE.Scene();
+    scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff );
 
     /*
