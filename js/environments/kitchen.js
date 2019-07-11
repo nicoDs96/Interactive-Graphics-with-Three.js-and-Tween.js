@@ -526,6 +526,49 @@ function kitchen(){
                 tweenLEGL2.stop();
                 tweenARMR2.stop();
                 tweenARML2.stop();
+
+                if( legL.rotation.x != 2.7 ) {
+                  console.log('char in movement, hence stop its!');
+
+                  var DELAY_STOP_MOVEMENT = 400;
+
+                  var finish_tlegl = new TWEEN.Tween(legL.rotation).to({
+                      x: 2.7,
+                      y: -0.16,
+                      z: -0.075
+                  }, DELAY_STOP_MOVEMENT).start();
+                  finish_tlegl.easing(TWEEN.Easing.Cubic.InOut);
+
+                  var finish_tlegr = new TWEEN.Tween(legR.rotation).to({
+                      x: 2.7,
+                      y: 0.25,
+                      z: 0.12
+                  }, DELAY_STOP_MOVEMENT).start();
+                  finish_tlegr.easing(TWEEN.Easing.Cubic.InOut);
+
+                  var finish_head = new TWEEN.Tween(head.rotation).to({
+                      x: -0.086,
+                      y: -0.031,
+                      z: -0.055
+                  }, DELAY_STOP_MOVEMENT).start();
+                  finish_head.easing(TWEEN.Easing.Cubic.InOut);
+
+                  var finish_armL = new TWEEN.Tween(armL.rotation).to({
+                      x: -0.11,
+                      y: 0,
+                      z: -2.7
+                  }, DELAY_STOP_MOVEMENT).start();
+                  finish_armL.easing(TWEEN.Easing.Cubic.InOut);
+
+                  var finish_armR = new TWEEN.Tween(armR.rotation).to({
+                    x: -0.11,
+                    y: 0,
+                    z: 2.7
+                  }, DELAY_STOP_MOVEMENT).start();
+                  finish_armR.easing(TWEEN.Easing.Cubic.InOut);
+
+}
+
             });
 
             tween.start();
