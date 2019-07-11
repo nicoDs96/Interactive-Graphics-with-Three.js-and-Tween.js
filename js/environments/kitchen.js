@@ -1,4 +1,8 @@
-
+/**
+ * @author: ig-final-LMN-sapienza-19
+ * @description: environment Kitchen.
+ *
+ */
 function kitchen(){
 
     var model,modelChar, box, checkHat, checkGlasses,hier;
@@ -379,9 +383,9 @@ function kitchen(){
                         clearInterval(checkGlasses);
                         glassesAreLoaded = true;
                         var box = new THREE.Box3().setFromObject( modelChar );
-                        glasses.scale.set(0.1,0.15,0.15);
+                        glasses.scale.set(0.11,0.15,0.15);
 
-                        glasses.position.z += box.getSize().z/2 -2.5;
+                        glasses.position.z += box.getSize().z/2 -2.8;
                         glasses.position.y = box.getSize().y - 1.5 ;
                         glasses.position.x += -0.1 ;
                         modelChar.add(glasses);
