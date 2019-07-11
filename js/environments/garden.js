@@ -12,6 +12,8 @@ loaded = false;
 var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
 var clicking = false;
 
+var checkWizardHat;
+var wizardHat = null;
 
   //Scene
   var scene = new THREE.Scene();
@@ -259,7 +261,30 @@ var clicking = false;
         glasses.position.y += box.getSize().y -0.75 ;
         modelChar.add(glasses);
       }
-     }, 500);}},
+     }, 500);}
+
+     if( getCookie('wizard-hat') == 'yes'){
+       console.log("wizard-hat is TRUE");
+         wizardHat = drawWizardHat();
+         checkWizardHat = setInterval(function(){
+             if(wizardHat == null){
+                 //console.log('glasses null');
+             }else{
+                 //console.log('glasses not null');
+                 clearInterval(checkWizardHat);
+                 wizardHatAreLoaded = true;
+                 var box = new THREE.Box3().setFromObject( modelChar );
+                 wizardHat.scale.set(0.11,0.15,0.15);
+
+                 wizardHat.position.z += box.getSize().z/2 ;
+                 wizardHat.position.y = box.getSize().y  ;
+                 wizardHat.position.x += -0.1 ;
+                 modelChar.add(wizardHat);
+             }
+         }, 500);
+     }
+
+   },
    function ( xhr ) {
    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded: robot' );
    if(!isNaN(xhr.loaded) && !isNaN(xhr.total) && !isNaN(xhr.loaded / xhr.total * 100 ) ){
@@ -280,7 +305,7 @@ var clicking = false;
      e.stopPropagation();
      clicking=true;
      console.log("animation hello executing..");
-     helloanimation(robotSkeleton,glasses,"garden");
+     helloanimation(robotSkeleton,glasses,wizardHat,"garden");
        clicking=false; //reset the animation
    };
 
@@ -288,7 +313,7 @@ var clicking = false;
      e.stopPropagation();
      clicking=true;
      console.log("animation dabdance executing..");
-     dabdanceanimation(robotSkeleton, glasses,"garden");
+     dabdanceanimation(robotSkeleton, glasses,wizardHat,"garden");
      clicking=false; //reset the animation
    };
 
@@ -296,7 +321,7 @@ var clicking = false;
      e.stopPropagation();
      clicking=true;
      console.log("animation affermative movement executing..");
-     affermativeanimation(robotSkeleton,glasses,"garden");
+     affermativeanimation(robotSkeleton,glasses,wizardHat,"garden");
      clicking=false; //reset the animation
    };
 
