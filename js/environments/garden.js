@@ -1,5 +1,6 @@
 var camera;
 var renderer;
+var scene;
 function garden(){
 
 var loadedV = [];
@@ -16,7 +17,7 @@ var checkWizardHat;
 var wizardHat = null;
 
   //Scene
-  var scene = new THREE.Scene();
+  scene = new THREE.Scene();
   scene.background = new THREE.Color( 0xffffff );
 
   //Camera

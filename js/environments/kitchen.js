@@ -5,7 +5,7 @@
  */
  var camera;
  var renderer;
-
+ var scene;
 function kitchen(){
 
     var model,modelChar, box, checkHat, checkGlasses,hier;
@@ -147,7 +147,7 @@ function kitchen(){
             collidableBoxes.push( WALL_3 );
             collidableBoxes.push( WALL_4 );
 
-    var scene = new THREE.Scene();
+    scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff );
 
     camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
