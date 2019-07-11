@@ -10,6 +10,7 @@ loadedV[3] = false;
 loadedV[4] = false;
 loaded = false;
 var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
+var clicking = false;
 
 
   //Scene
@@ -276,24 +277,27 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
 
    //Extra animations
    document.getElementById("hello").onclick = function(e){
-       e.stopPropagation();
-       clicking=true;
-       console.log("animation hello executing");
-       helloanimation(robotSkeleton,glasses,"garden");
+     e.stopPropagation();
+     clicking=true;
+     console.log("animation hello executing..");
+     helloanimation(robotSkeleton,glasses,"garden");
+       clicking=false; //reset the animation
    };
 
    document.getElementById("dabdance").onclick = function(e){
-       e.stopPropagation();
-       clicking=true;
-       console.log("animation dabdance executing");
-       dabdanceanimation(robotSkeleton, glasses,"garden");
+     e.stopPropagation();
+     clicking=true;
+     console.log("animation dabdance executing..");
+     dabdanceanimation(robotSkeleton, glasses,"garden");
+     clicking=false; //reset the animation
    };
 
    document.getElementById("affermative_movement").onclick = function(e){
-       e.stopPropagation();
-       clicking=true;
-       console.log("animation affermative movement executing");
-       affermativeanimation(robotSkeleton,glasses,"garden");
+     e.stopPropagation();
+     clicking=true;
+     console.log("animation affermative movement executing..");
+     affermativeanimation(robotSkeleton,glasses,"garden");
+     clicking=false; //reset the animation
    };
 
 
@@ -333,6 +337,7 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
               var head = mainB[0].children[1].children[2].children[0].children[0].children[0].children[0];
               var legL = mainB[0].children[1].children[0];
               var legR = mainB[0].children[1].children[1];
+              var INITIALVALUE_LEG = 2.7;
               var rootInit = { x : invisibleBox.position.x , z : invisibleBox.position.z };
               var rootFinal = { x : point.x , z : point.z };
               var tween = new TWEEN.Tween(rootInit).to(rootFinal, 1500).onComplete(function() {
@@ -347,21 +352,48 @@ var robotLookingAt = new THREE.Vector3( 0, 0, 1 ).normalize();
                   tweenARMR2.stop();
                   tweenARML2.stop();
                   //-----------------------------
-                  legL.rotation.x=2.74;
-                  legL.rotation.y=-0.15;
-                  legL.rotation.z=-0.07;
-                  legR.rotation.x=2.73;
-                  legR.rotation.y=0.25;
-                  legR.rotation.z=0.11;
-                  armL.rotation.x=-0.10;
-                  armL.rotation.y=0;
-                  armL.rotation.z=-2.71;
-                  armR.rotation.x=-0.10;
-                  armR.rotation.y=-6.59;
-                  armR.rotation.z=2.68;
-                  head.rotation.x=-0.07;
-                  head.rotation.y=-0.16;
-                  head.rotation.z=0;
+                  if( legL.rotation.x != INITIALVALUE_LEG
+                    && legR.rotation.x != INITIALVALUE_LEG ) {
+                    console.log('char in movement, hence stop its!');
+
+                    var DELAY_STOP_MOVEMENT = 400;
+
+                    var finish_tlegl = new TWEEN.Tween(legL.rotation).to({
+                        x: 2.7,
+                        y: -0.16,
+                        z: -0.075
+                    }, DELAY_STOP_MOVEMENT).start();
+                    finish_tlegl.easing(TWEEN.Easing.Cubic.InOut);
+
+                    var finish_tlegr = new TWEEN.Tween(legR.rotation).to({
+                        x: 2.7,
+                        y: 0.25,
+                        z: 0.12
+                    }, DELAY_STOP_MOVEMENT).start();
+                    finish_tlegr.easing(TWEEN.Easing.Cubic.InOut);
+
+                    var finish_head = new TWEEN.Tween(head.rotation).to({
+                        x: -0.086,
+                        y: -0.031,
+                        z: -0.055
+                    }, DELAY_STOP_MOVEMENT).start();
+                    finish_head.easing(TWEEN.Easing.Cubic.InOut);
+
+                    var finish_armL = new TWEEN.Tween(armL.rotation).to({
+                        x: -0.11,
+                        y: 0,
+                        z: -2.7
+                    }, DELAY_STOP_MOVEMENT).start();
+                    finish_armL.easing(TWEEN.Easing.Cubic.InOut);
+
+                    var finish_armR = new TWEEN.Tween(armR.rotation).to({
+                      x: -0.11,
+                      y: 0,
+                      z: 2.7
+                    }, DELAY_STOP_MOVEMENT).start();
+                    finish_armR.easing(TWEEN.Easing.Cubic.InOut);
+
+            }
                   //----------------------------
               });
               tween.onUpdate(function(){
