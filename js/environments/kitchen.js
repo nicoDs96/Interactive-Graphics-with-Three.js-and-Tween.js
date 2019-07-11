@@ -142,7 +142,6 @@ function kitchen(){
         collidableBoxes.push( FLOWER1_BOX );
         collidableBoxes.push( FLOWER2_BOX );
         collidableBoxes.push( FLOWER3_BOX );
-        collidableBoxes.push( TABLE_BOX );
           collidableBoxes.push( WALL_1 );
             collidableBoxes.push( WALL_2 );
             collidableBoxes.push( WALL_3 );
