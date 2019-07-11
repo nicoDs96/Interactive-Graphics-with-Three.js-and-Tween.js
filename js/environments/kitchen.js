@@ -515,6 +515,8 @@ function kitchen(){
                 }
             });
 
+            var INITIALVALUE_LEG = 2.7;
+
             tween.onComplete(function() {
                 tweenHEAD1.stop();
                 tweenLEGR1.stop();
@@ -527,7 +529,8 @@ function kitchen(){
                 tweenARMR2.stop();
                 tweenARML2.stop();
 
-                if( legL.rotation.x != 2.7 ) {
+                if( legL.rotation.x != INITIALVALUE_LEG
+                  && legR.rotation.x != INITIALVALUE_LEG ) {
                   console.log('char in movement, hence stop its!');
 
                   var DELAY_STOP_MOVEMENT = 400;
