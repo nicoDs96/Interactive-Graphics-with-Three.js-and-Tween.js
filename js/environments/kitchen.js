@@ -373,7 +373,7 @@ function kitchen(){
 
             }
 
-          /*  if( getCookie('wizard-hat') == 'yes'){
+            if( getCookie('wizard-hat') == 'yes'){
               console.log("wizard-hat is TRUE");
                 wizardHat = drawWizardHat();
                 checkWizardHat = setInterval(function(){
@@ -392,7 +392,7 @@ function kitchen(){
                         modelChar.add(wizardHat);
                     }
                 }, 500);
-            }*/
+            }
         },
         // called while loading is progressing
         function ( xhr ) {

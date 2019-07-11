@@ -59,7 +59,7 @@ function setUpMenuListeners(){
           };
 
         //WIZARD HAT
-      /*      document.getElementById("wizard-hat").onclick = function(){
+            document.getElementById("wizard-hat").onclick = function(){
 
         if (document.getElementById("wizard-hat").innerHTML == "Add Magic Touch"){
           console.log("in wizard-hat")
@@ -86,7 +86,7 @@ function setUpMenuListeners(){
             hier.remove(wizardHat);
             document.getElementById("wizard-hat").innerHTML = "Add Magic Touch";
         }
-      };*/
+      };
 
 
     document.getElementById("customize").onclick = function(){
@@ -112,12 +112,12 @@ function setUpMenuListeners(){
             document.cookie = "glasses=yes;";
         }
 
-  /*      if(document.getElementById("wizard-hat").innerHTML == "Add Magic Touch"){
+        if(document.getElementById("wizard-hat").innerHTML == "Add Magic Touch"){
             document.cookie = "wizard-hat=no;";
         }
         else{
             document.cookie = "wizard-hat=yes;";
-        }*/
+        }
 
         console.log('customization parameters:');
         console.log(document.cookie);

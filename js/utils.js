@@ -68,7 +68,7 @@ function dabdanceanimation(robotSkeleton, glasses, room) {
   var legL = mainB[0].children[1].children[0];
   var legR = mainB[0].children[1].children[1];
 
-
+  if (getCookie('glasses') == 'yes') {
   var tweenGlasses = new TWEEN.Tween(glasses.rotation).to({
       x: 0.6,
       y: 1.2,
@@ -85,7 +85,10 @@ function dabdanceanimation(robotSkeleton, glasses, room) {
   tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
   tweenGlasses2.repeat(1);
   tweenGlasses2.yoyo(true);
+}
 
+if (getCookie('wizard-hat') == 'yes') {
+}
 
 
 
@@ -155,9 +158,9 @@ function affermativeanimation(robotSkeleton, glasses, room) {
   var legL = mainB[0].children[1].children[0];
   var legR = mainB[0].children[1].children[1];
 
-  head.rotation.x = -0.3;
-  head.rotation.y = -0.031;
-  head.rotation.z = 0.055;
+  //head.rotation.x = -0.3;
+  //head.rotation.y = -0.031;
+  //head.rotation.z = 0.055;
 
   if (room == 'garden') {
     console.log("To Implement");
@@ -182,6 +185,9 @@ function affermativeanimation(robotSkeleton, glasses, room) {
       tweenGlasses2.easing(TWEEN.Easing.Cubic.InOut);
       tweenGlasses2.repeat(1);
       tweenGlasses2.yoyo(true);
+    }
+
+    if (getCookie('wizard-hat') == 'yes') {
     }
 
   }
@@ -261,6 +267,9 @@ function helloanimation(robotSkeleton, glasses) {
 
 
 
+  }
+
+  if (getCookie('wizard-hat') == 'yes') {
   }
 
   // add tweenHEAD
