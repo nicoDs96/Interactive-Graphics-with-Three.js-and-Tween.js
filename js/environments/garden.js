@@ -506,7 +506,6 @@ var clicking = false;
       TWEEN.update();
       requestAnimationFrame( animate );
       if((loadedV[0] == true) && (loadedV[1] == true) && (loadedV[2] == true) && (loadedV[3] == true) && (loadedV[4] == true)){
-        console.log("ALL LOADED");
         loaded = true;
       }
   }
