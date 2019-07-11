@@ -11,7 +11,7 @@ function kitchen(){
     var rootBone = [];
     var robotSkeleton;
     var robotLookingAt = new THREE.Vector3( 0, -1, 0 ).normalize();
-    var clicking = false;
+    var clicking = false; //for discriminate Animation and Walking
 
 //collision boxes
     var invisibleBox;
@@ -425,7 +425,7 @@ function kitchen(){
     document.getElementById("hello").onclick = function(e){
       e.stopPropagation();
       clicking=true;
-      console.log("animation hello executing");
+      console.log("animation hello executing..");
       helloanimation(robotSkeleton,glasses,"kitchen");
         clicking=false; //reset the animation
     };
@@ -433,7 +433,7 @@ function kitchen(){
     document.getElementById("dabdance").onclick = function(e){
       e.stopPropagation();
       clicking=true;
-      console.log("animation dabdance executing");
+      console.log("animation dabdance executing..");
       dabdanceanimation(robotSkeleton, glasses,"kitchen");
       clicking=false; //reset the animation
     };
@@ -441,7 +441,7 @@ function kitchen(){
     document.getElementById("affermative_movement").onclick = function(e){
       e.stopPropagation();
       clicking=true;
-      console.log("animation affermative movement executing");
+      console.log("animation affermative movement executing..");
       affermativeanimation(robotSkeleton,glasses,"kitchen");
       clicking=false; //reset the animation
     };
@@ -452,7 +452,7 @@ function kitchen(){
 
     function onMouseClick( event ) {
 
-      console.log("debug click" + clicking);
+      console.log("Animation " + clicking);
 
       if(clicking==false) {
 
@@ -504,7 +504,7 @@ function kitchen(){
                     tween.stop();
                     var func = setInterval(function(){
                         console.log('gameOver')
-                        alert("Game Over\nThe Robot Collided in bedroom");
+                        alert("Game Over\nThe Robot Collided in Kitchen");
                         window.location.replace("index.html");
                         clearInterval(func);
 
