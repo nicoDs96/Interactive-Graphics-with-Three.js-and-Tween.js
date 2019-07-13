@@ -164,7 +164,7 @@ f2.add( boxmeshutil.scale , 'z', 0, 5 ).step(0.1);
 
 
 camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000 );
-camera.position.set(15,-1,13);
+camera.position.set(15,-1,15);
 camera.up = new THREE.Vector3(0,0,1);
 camera.lookAt(new THREE.Vector3(0,0,20));
 
@@ -180,10 +180,10 @@ else{
 }
 
 var controls = new THREE.OrbitControls( camera, renderer.domElement );
-controls.enableZoom = true;
-controls.enabled = true ;
-//controls.enableZoom = false;
-//controls.enabled = false ;
+//controls.enableZoom = true;
+//controls.enabled = true ;
+controls.enableZoom = false;
+controls.enabled = false ;
 
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
