@@ -36,7 +36,7 @@ function checkCollision(invisibleBox, boxList) {
       var helpmesh = new THREE.Mesh(
         new THREE.CubeGeometry(secondBB.getSize().x, secondBB.getSize().y, secondBB.getSize().z),
         new THREE.MeshStandardMaterial({
-          opacity: 0.0,
+          opacity: 0.3,
           transparent: true,
           color: Math.random() * 0xffffff
         })
