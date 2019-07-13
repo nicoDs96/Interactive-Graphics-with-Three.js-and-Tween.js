@@ -169,7 +169,7 @@ camera.up = new THREE.Vector3(0,0,1);
 camera.lookAt(new THREE.Vector3(0,0,20));
 
 renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth*0.99, window.innerHeight*0.99);
+renderer.setSize(window.innerWidth, window.innerHeight);
 if(document.querySelector('canvas') != undefined ){
     document.body.replaceChild( renderer.domElement, document.getElementsByTagName('canvas')[0] );
     document.querySelector('canvas').setAttribute('hidden','true');
