@@ -1,75 +1,80 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset=utf-8>
-		<title>Final Project</title>
 
-		<style>
-			body { margin: 0; }
-			canvas { width: 100%; height: 100% }
-		</style>
-    	<script src="lib/three.min.js"></script>
-		<script src="lib/three.min.js"></script>
-		<script src="lib/OrbitControls.js"></script>
-		<script src='lib/Tween.js'></script>
-		<script src="lib/GLTFLoader.js"></script>
-		<script src='js/utils.js'></script>
-		<script type="text/javascript" src="lib/Physi.js"></script>
-		<script src="js/environments/garden.js"></script>
-		<script src="js/environments/bedroom.js"></script>
-		<script src="js/environments/kitchen.js"></script>
-		<script src="js/listeners.js"></script>
-		<script src='js/drawAccessories.js'></script>
+<head>
+	<meta charset=utf-8>
+	<title>Final Project</title>
+	<script src="lib/three.min.js"></script>
+	<script src="lib/three.min.js"></script>
+	<script src="lib/OrbitControls.js"></script>
+	<script src='lib/Tween.js'></script>
+	<script src="lib/GLTFLoader.js"></script>
+	<script src='js/utils.js'></script>
+	<script src="js/environments/garden.js"></script>
+	<script src="js/environments/bedroom.js"></script>
+	<script src="js/environments/kitchen.js"></script>
+	<script src="js/listeners.js"></script>
+	<script src='js/drawAccessories.js'></script>
 
 
 
+	<!-- Bootstrap stuff -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<meta content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+	<style>
+		body {
+			margin: 0;
+		}
 
-		<!-- Bootstrap stuff -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		canvas {
+			width: 100%;
+			height: 98%
+		}
+	</style>
+</head>
 
-	</head>
-	<body>
-		<div id="comands">
-			<div class="btn-group" style="position: absolute;">
-				<button type="button" class="btn btn-dark" id="kitchen">Kitchen</button>
-				<button type="button" class="btn btn-dark" id="garden">Garden</button>
-				<button type="button" class="btn btn-dark" id="bedroom">Bedroom</button>
-				<button type="button" class="btn btn-dark" id="exit">Exit</button>
-			</div>
-			<div class="btn-group float-right " role="group">
-				<button type="button" class="btn btn-light" id="hello">Hello!</button>
-				<button type="button" class="btn btn-light" id="dabdance">Dab Dance</button>
-				<button type="button" class="btn btn-light" id="affermative_movement">Affermative</button>
-			</div>
+<body>
+	<div id="comands">
+		<div class="btn-group" style="position: fixed; top:1%;">
+			<button type="button" class="btn btn-dark" id="kitchen">Kitchen</button>
+			<button type="button" class="btn btn-dark" id="garden">Garden</button>
+			<button type="button" class="btn btn-dark" id="bedroom">Bedroom</button>
+			<button type="button" class="btn btn-dark" id="exit">Exit</button>
 		</div>
+		<div class="btn-group float-right " role="group" style="position: fixed; top:1%; right: 0%">
+			<button type="button" class="btn btn-light" id="hello">Hello!</button>
+			<button type="button" class="btn btn-light" id="dabdance">Dab Dance</button>
+			<button type="button" class="btn btn-light" id="affermative_movement">Affermative</button>
+		</div>
+	</div>
+	<table id='loading' style="position: absolute;height: 100%;width: 100%;">
+		<tbody>
+			<tr>
+				<td>
+					<div class="align-middle display-1">Loading...</div><br>
+					<div class="align-middle display-5">&nbsp;&nbsp;It may take a while if your connection is slow</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 
-		<table id='loading' style="position: absolute;height: 100%;width: 100%;">
-			<tbody>
-				<tr>
-					<td><div class="align-middle display-1">Loading...</div><br><div class="align-middle display-5">&nbsp;&nbsp;It may take a while if your connection is slow</div></td>
-				</tr>
-			</tbody>
-		</table>
-
-
-		<!-- testing js -->
-		<script>
-	
-	    document.getElementById('comands').setAttribute('hidden','true');
+	<!-- testing js -->
+	<script>
+		document.getElementById('comands').setAttribute('hidden', 'true');
 		var loaded = false;
 		setUpListeners();
-        kitchen();
+		kitchen();
 
-		setInterval(function(){
-		   if(loaded){
-			   document.querySelector('canvas').removeAttribute("hidden");
-			   document.getElementById('loading').setAttribute('hidden','true');
-			   document.getElementById('comands').removeAttribute("hidden");
-		   }
+		setInterval(function() {
+			if (loaded) {
+				document.querySelector('canvas').removeAttribute("hidden");
+				document.getElementById('loading').setAttribute('hidden', 'true');
+				document.getElementById('comands').removeAttribute("hidden");
+			}
 		}, 1000);
-		</script>
-	</body>
+	</script>
+</body>
 </html>
