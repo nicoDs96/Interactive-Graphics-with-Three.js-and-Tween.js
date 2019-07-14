@@ -167,8 +167,8 @@ function kitchen(){
     }
 
     var controls = new THREE.OrbitControls( camera, renderer.domElement );
-    controls.enableZoom = true;
-    controls.enabled = true ;
+    controls.enableZoom = false;
+    controls.enabled = false ;
 
     var raycaster = new THREE.Raycaster();
     var mouse = new THREE.Vector2();
