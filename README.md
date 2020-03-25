@@ -1,4 +1,4 @@
-# ig-final-LMN
+# Interactive Graphics with Three.js and Tween.js
 To Play:<br>
 https://nicods96.github.io/Interactive-Graphics-with-Three.js-and-Tween.js/ <br>
 or <br/>
