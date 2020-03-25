@@ -1,6 +1,7 @@
 # ig-final-LMN
-https://nicods96.github.io/finalproject-l-m-n-2019/
-or
+To Play:<br>
+https://nicods96.github.io/Interactive-Graphics-with-Three.js-and-Tween.js/ <br>
+or <\br>
 https://sapienzainteractivegraphicscourse.github.io/finalproject-l-m-n-2019/
 
 Di Santo Nicola, Maggio Luca, Rizza Matteo.
